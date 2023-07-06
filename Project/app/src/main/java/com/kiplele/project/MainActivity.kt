@@ -102,9 +102,9 @@ class MainActivity : ComponentActivity() {
                 if (task.isSuccessful) {
                     // Registration success, handle the registered user here
                     // Navigate to the login page
-                    /*val intent = Intent(context, LoginActivity::class.java)
+                    val intent = Intent(context, LoginActivity::class.java)
                     context.startActivity(intent)
-                    context.finish() // Optionally finish the current activity */
+                    context.finish() // Optionally finish the current activity
                 } else {
                     // Registration failed, handle the error here
                 }
