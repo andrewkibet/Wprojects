@@ -46,9 +46,8 @@ class MainActivity : ComponentActivity() {
         val context= LocalContext.current
         var name by remember { mutableStateOf("") }
         var email by remember { mutableStateOf("") }
-        var password by remember {mutableStateOf("")
-
-        }
+        var password by remember {mutableStateOf("")}
+        var isLoading by remember { mutableStateOf(false)        }
 
         Column(
             modifier = Modifier
@@ -86,7 +85,9 @@ class MainActivity : ComponentActivity() {
             Button(
                 onClick = {
                     // Handle registration button click
+                    isLoading  =true
                           registerUser(context,email,password)
+                    isLoading =  false
                 },
                 modifier = Modifier.align(Alignment.End)
             ) {
