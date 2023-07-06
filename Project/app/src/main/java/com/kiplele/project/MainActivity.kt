@@ -2,6 +2,7 @@ package com.kiplele.project
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kiplele.project.ui.theme.ProjectTheme
 
 class MainActivity : ComponentActivity() {
-    private lateinit var auth:FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +44,10 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun RegistrationScreen() {
-        val context= LocalContext.current
+        val context = LocalContext.current as Activity
         var name by remember { mutableStateOf("") }
         var email by remember { mutableStateOf("") }
-        var password by remember {mutableStateOf("")}
-        var isLoading by remember { mutableStateOf(false)        }
+        var password by remember { mutableStateOf("") }
 
         Column(
             modifier = Modifier
@@ -85,9 +85,7 @@ class MainActivity : ComponentActivity() {
             Button(
                 onClick = {
                     // Handle registration button click
-                    isLoading  =true
-                          registerUser(context,email,password)
-                    isLoading =  false
+                    registerUser(context, email, password)
                 },
                 modifier = Modifier.align(Alignment.End)
             ) {
@@ -95,20 +93,24 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-private fun registerUser(context: Context, email: String, password: String) {
-    val auth = FirebaseAuth.getInstance()
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .addOnCompleteListener(context as Activity) { task ->
-            if (task.isSuccessful) {
-                // Registration success, handle the registered user here
-            } else {
-                // Registration failed, handle the error here
+    private fun registerUser(context: Context, email: String, password: String) {
+        val auth = FirebaseAuth.getInstance()
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(context as Activity) { task ->
+                if (task.isSuccessful) {
+                    // Registration success, handle the registered user here
+                    // Navigate to the login page
+                    /*val intent = Intent(context, LoginActivity::class.java)
+                    context.startActivity(intent)
+                    context.finish() // Optionally finish the current activity */
+                } else {
+                    // Registration failed, handle the error here
+                }
             }
-        }
+    }
 }
-
 
 @Preview(showBackground = true)
 @Composable
