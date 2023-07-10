@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Project</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_all_projects">AllProjects</string>
+    <string name="title_activity_project_list">ProjectList</string>
+    <string name="title_activity_admin_page">AdminPage</string>
 
 </resources>
