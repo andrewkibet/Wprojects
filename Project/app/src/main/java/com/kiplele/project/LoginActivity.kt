@@ -1,6 +1,5 @@
 package com.kiplele.project
 
-import AllProjects
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -90,7 +89,7 @@ class LoginActivity : ComponentActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(context as Activity) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(context, AllProjects::class.java)
+                    val intent = Intent(context, ProjectList::class.java)
                     context.startActivity(intent)
                     context.finish() // Optionally finish the current activity
                     // Login success, handle the authenticated user here
