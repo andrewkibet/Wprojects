@@ -1,6 +1,13 @@
 package com.kiplele.project
 
 import android.app.Activity
+
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -48,6 +55,10 @@ class MainActivity : ComponentActivity() {
         var name by remember { mutableStateOf("") }
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
+        var selectedRole by remember { mutableStateOf("") }
+        val roleOptions = listOf("MCA", "Citizen", "Tenderer", "ProjectAdmin")
+
+
 
         Column(
             modifier = Modifier
@@ -73,6 +84,25 @@ class MainActivity : ComponentActivity() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
+            /*DropdownMenu(
+                expanded = false, // Set to true when the dropdown is open
+                onDismissRequest = { /* Handle dismiss request */ },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                roleOptions.forEach { role ->
+                    DropdownMenuItem(
+                        onClick = {
+                            selectedRole = role // Update the selected role when clicked
+                        }
+                    ) {
+                        Text(role)
+                    }
+                }
+            } */
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+
             TextField(
                 value = password,
                 onValueChange = { password = it },
@@ -85,7 +115,7 @@ class MainActivity : ComponentActivity() {
             Button(
                 onClick = {
                     // Handle registration button click
-                    registerUser(context, email, password)
+                    registerUser(context, email, password, selectedRole)
                 },
                 modifier = Modifier.align(Alignment.End)
             ) {
@@ -94,7 +124,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun registerUser(context: Context, email: String, password: String) {
+    private fun registerUser(
+        context: Context,
+        email: String,
+        password: String,
+        role: String
+    ) {
         val auth = FirebaseAuth.getInstance()
 
         auth.createUserWithEmailAndPassword(email, password)
