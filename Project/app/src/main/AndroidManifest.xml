@@ -19,11 +19,7 @@
             android:exported="false"
             android:label="@string/title_activity_project_list"
             android:theme="@style/Theme.Project" />
-        <activity
-            android:name=".ui.AllProjects"
-            android:exported="false"
-            android:label="@string/title_activity_all_projects"
-            android:theme="@style/Theme.Project" />
+
         <activity
             android:name=".ProjectList"
             android:exported="false"
