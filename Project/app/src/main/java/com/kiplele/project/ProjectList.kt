@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -53,12 +55,12 @@ fun ProjectListContent() {
         }
         else -> {
             // Display the fetched data
-            Column {
-                projectListState.projectList.forEach { project ->
-                    ProjectFields(project)
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
-            }
+           LazyColumn(Modifier.fillMaxSize()){
+              items(projectListState.projectList){project ->
+                  ProjectFields(project)
+                  Spacer(modifier = Modifier.height(16.dp))
+              }
+           }
         }
     }
 }
