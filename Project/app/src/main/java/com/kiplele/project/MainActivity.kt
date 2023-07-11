@@ -13,6 +13,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +25,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +40,10 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             ProjectTheme {
+                Box(modifier = Modifier.fillMaxSize())
+                {
+                    BacgroundImage()
+                }
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -145,6 +151,20 @@ class MainActivity : ComponentActivity() {
                 }
             }
     }
+}
+
+
+
+@Composable
+fun BacgroundImage(){
+
+    Image(
+        painter= painterResource(id = R.drawable.walpaper),
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize(),
+        alignment = Alignment.Center
+
+    )
 }
 
 @Preview(showBackground = true)
