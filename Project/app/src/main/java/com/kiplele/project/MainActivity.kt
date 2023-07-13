@@ -3,6 +3,7 @@ package com.kiplele.project
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -58,11 +59,17 @@ class MainActivity : ComponentActivity() {
         var selectedRole by remember { mutableStateOf("") }
         val roleOptions = listOf("MCA", "Citizen", "Tenderer", "ProjectAdmin")
 
+
+        // MutableState variables to track field validity
+        var isNameValid by remember { mutableStateOf(true) }
+        var isEmailValid by remember { mutableStateOf(true) }
+        var isPasswordValid by remember { mutableStateOf(true) }
+
         Box(modifier = Modifier.fillMaxSize()) {
             BackgroundImage()
             Column(modifier = Modifier.fillMaxSize()) {
                 TopAppBar(
-                    title = { Text(text = "My App Name") },
+                    title = { Text(text = "Ward Projects") },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Column(
@@ -76,7 +83,9 @@ class MainActivity : ComponentActivity() {
                         value = name,
                         onValueChange = { name = it },
                         label = { Text("Name") },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                       // isError = !isNameValid, // Set error state based on validity
+                        //errorMessage = if (!isNameValid) "Please enter your name" else null
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -104,7 +113,15 @@ class MainActivity : ComponentActivity() {
                     Button(
                         onClick = {
                             // Handle registration button click
-                            registerUser(context, email, password, selectedRole)
+                            if (name.isNotEmpty() && email.isNotEmpty() && password.length >= 6) {
+                                registerUser(context, email, password, selectedRole)
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "Please fill in all fields and ensure the password is at least 6 characters long.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         },
                         modifier = Modifier.align(Alignment.End)
                     ) {
@@ -126,13 +143,24 @@ class MainActivity : ComponentActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(context) { task ->
                 if (task.isSuccessful) {
+
                     // Registration success, handle the registered user here
+                    Toast.makeText(
+                        context,
+                        "Registration Successful",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     // Navigate to the login page
                     val intent = Intent(context, LoginActivity::class.java)
                     context.startActivity(intent)
                     context.finish() // Optionally finish the current activity
                 } else {
                     // Registration failed, handle the error here
+                    Toast.makeText(
+                        context,
+                        "Registration Failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
