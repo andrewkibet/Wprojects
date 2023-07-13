@@ -1,5 +1,6 @@
 package com.kiplele.project
 
+//import BackgroundImage
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
@@ -48,19 +49,22 @@ fun AdminPageContent() {
 
     val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
 
-    Column(
-        modifier = Modifier.padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(modifier = Modifier.fillMaxWidth()){
 
-        }
-        DropdownMenu(
-            expanded = false, // Set to true when the dropdown is open
-            onDismissRequest = { /* Handle dismiss request */ },
-            modifier = Modifier.fillMaxWidth()
+    Box(modifier = Modifier.fillMaxSize()) {
+       // BackgroundImage()
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Box(modifier = Modifier.fillMaxWidth()){
+
+            }
+            DropdownMenu(
+                expanded = false, // Set to true when the dropdown is open
+                onDismissRequest = { /* Handle dismiss request */ },
+                modifier = Modifier.fillMaxWidth()
+            ) {
 /* projectTypes.forEach { projectType ->
      DropdownMenuItem(
          onClick = {
@@ -72,73 +76,77 @@ fun AdminPageContent() {
  }
 
  */
-}
+            }
 
-Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-TextField(
- value = projectName,
- onValueChange = { projectName = it },
- label = { Text("Project Name") },
- modifier = Modifier.fillMaxWidth()
-)
+            TextField(
+                value = projectName,
+                onValueChange = { projectName = it },
+                label = { Text("Project Name") },
+                modifier = Modifier.fillMaxWidth()
+            )
 
-Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-TextField(
- value = tenderName,
- onValueChange = { tenderName = it },
- label = { Text("Tender Name") },
- modifier = Modifier.fillMaxWidth()
-)
+            TextField(
+                value = tenderName,
+                onValueChange = { tenderName = it },
+                label = { Text("Tender Name") },
+                modifier = Modifier.fillMaxWidth()
+            )
 
-Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-TextField(
- value = tenderPhoneNumber,
- onValueChange = { tenderPhoneNumber = it },
- label = { Text("Tender Phone Number") },
- modifier = Modifier.fillMaxWidth()
-)
+            TextField(
+                value = tenderPhoneNumber,
+                onValueChange = { tenderPhoneNumber = it },
+                label = { Text("Tender Phone Number") },
+                modifier = Modifier.fillMaxWidth()
+            )
 
-Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-TextField(
- value = tenderEmail,
- onValueChange = { tenderEmail = it },
- label = { Text("Tender Email") },
- modifier = Modifier.fillMaxWidth()
-)
+            TextField(
+                value = tenderEmail,
+                onValueChange = { tenderEmail = it },
+                label = { Text("Tender Email") },
+                modifier = Modifier.fillMaxWidth()
+            )
 
-Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-TextField(
- value = budget,
- onValueChange = { budget = it },
- label = { Text("Budget") },
- modifier = Modifier.fillMaxWidth()
-)
+            TextField(
+                value = budget,
+                onValueChange = { budget = it },
+                label = { Text("Budget") },
+                modifier = Modifier.fillMaxWidth()
+            )
 
-Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-Button(
- onClick = {
-     // Save the details in Firestore
-     saveDetailsToFirestore(
-         context,
-         selectedProjectType,
-         projectName,
-         tenderName,
-         tenderPhoneNumber,
-         tenderEmail,
-         budget
-     )
- },
- modifier = Modifier.align(Alignment.End)
-) {
- Text("Save")
-}
-}
+            Button(
+                onClick = {
+                    // Save the details in Firestore
+                    saveDetailsToFirestore(
+                        context,
+                        selectedProjectType,
+                        projectName,
+                        tenderName,
+                        tenderPhoneNumber,
+                        tenderEmail,
+                        budget
+                    )
+                },
+                modifier = Modifier.align(Alignment.End)
+            ) {
+                Text("Save")
+            }
+        }
+
+    }
+
+
 }
 
 
