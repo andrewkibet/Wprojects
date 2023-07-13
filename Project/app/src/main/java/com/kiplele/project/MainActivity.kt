@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
@@ -64,91 +65,94 @@ class MainActivity : ComponentActivity() {
                     title = { Text(text = "My App Name") },
                     modifier = Modifier.fillMaxWidth()
                 )
-            Column(
-                modifier = Modifier
-                     .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                TextField(
-                    value = name,
-                    onValueChange = { name = it },
-                    label = { Text("Name") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                TextField(
-                    value = email,
-                    onValueChange = { email = it },
-                    label = { Text("Email") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                TextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    label = { Text("Password") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Button(
-                    onClick = {
-                        // Handle registration button click
-                        registerUser(context, email, password, selectedRole)
-                    },
-                    modifier = Modifier.align(Alignment.End)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Register")
+                    TextField(
+                        value = name,
+                        onValueChange = { name = it },
+                        label = { Text("Name") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    TextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        label = { Text("Email") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    TextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        label = { Text("Password") },
+                        modifier = Modifier.fillMaxWidth(),
+                        visualTransformation = PasswordVisualTransformation() // Hide password characters
+
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Button(
+                        onClick = {
+                            // Handle registration button click
+                            registerUser(context, email, password, selectedRole)
+                        },
+                        modifier = Modifier.align(Alignment.End)
+                    ) {
+                        Text("Register")
+                    }
                 }
             }
         }
     }
-}
 
-private fun registerUser(
-    context: Activity,
-    email: String,
-    password: String,
-    role: String
-) {
-    val auth = FirebaseAuth.getInstance()
+    private fun registerUser(
+        context: Activity,
+        email: String,
+        password: String,
+        role: String
+    ) {
+        val auth = FirebaseAuth.getInstance()
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .addOnCompleteListener(context) { task ->
-            if (task.isSuccessful) {
-                // Registration success, handle the registered user here
-                // Navigate to the login page
-                val intent = Intent(context, LoginActivity::class.java)
-                context.startActivity(intent)
-                context.finish() // Optionally finish the current activity
-            } else {
-                // Registration failed, handle the error here
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(context) { task ->
+                if (task.isSuccessful) {
+                    // Registration success, handle the registered user here
+                    // Navigate to the login page
+                    val intent = Intent(context, LoginActivity::class.java)
+                    context.startActivity(intent)
+                    context.finish() // Optionally finish the current activity
+                } else {
+                    // Registration failed, handle the error here
+                }
             }
+    }
+
+
+    @Composable
+    fun BackgroundImage() {
+        Image(
+            painter = painterResource(id = R.drawable.walpaper),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            alignment = Alignment.Center
+        )
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun RegistrationScreenPreview() {
+        ProjectTheme {
+            MainActivity().RegistrationScreen()
         }
-}
-
-
-@Composable
-fun BackgroundImage() {
-    Image(
-        painter = painterResource(id = R.drawable.walpaper),
-        contentDescription = null,
-        modifier = Modifier.fillMaxSize(),
-        alignment = Alignment.Center
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RegistrationScreenPreview() {
-    ProjectTheme {
-        MainActivity().RegistrationScreen()
     }
 }
