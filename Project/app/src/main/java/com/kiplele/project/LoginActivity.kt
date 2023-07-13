@@ -92,7 +92,7 @@ class LoginActivity : ComponentActivity() {
             Text(text = "Don't have Account?")
             Text(text = "Register Here?",
                 fontStyle = FontStyle.Italic,
-            color =if (isRegisterClicked.value) Color.Blue else Color.Red,
+            color =if (isRegisterClicked.value) Color.Red else Color.Blue,
                 modifier = Modifier.clickable {
                     isRegisterClicked.value = true
                     // Handle the click event here if needed
