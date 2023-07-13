@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,8 +20,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,7 +60,7 @@ class MainActivity : ComponentActivity() {
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
         var selectedRole by remember { mutableStateOf("") }
-        val roleOptions = listOf("MCA", "Citizen", "Tenderer", "ProjectAdmin")
+       // val roleOptions = listOf("MCA", "Citizen", "Tenderer", "ProjectAdmin")
 
 
         // MutableState variables to track field validity
@@ -127,6 +130,21 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Text("Register")
                     }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(text = "Already have an Account?")
+                    val isRegisterClicked = remember{ mutableStateOf(false) }
+                    Text(text = "Login Here.",
+                        fontStyle = FontStyle.Italic,
+                        color =if (isRegisterClicked.value) Color.Red else Color.Blue,
+                        modifier = Modifier.clickable {
+                            isRegisterClicked.value = true
+                            // Handle the click event here if needed
+                            // Navigate to the login page
+                            val intent = Intent(context, MainActivity::class.java)
+                            context.startActivity(intent)
+                        }
+                    )
                 }
             }
         }
