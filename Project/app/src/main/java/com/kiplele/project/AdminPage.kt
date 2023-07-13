@@ -15,6 +15,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +53,8 @@ fun AdminPageContent() {
 
     Box(modifier = Modifier.fillMaxSize()) {
        // BackgroundImage()
+
+
         Column(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.Center,
