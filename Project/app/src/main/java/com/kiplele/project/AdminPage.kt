@@ -2,6 +2,7 @@ package com.kiplele.project
 
 //import BackgroundImage
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -15,14 +16,19 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.kiplele.project.ui.theme.ProjectTheme
+import java.io.ByteArrayOutputStream
+import java.util.UUID
 
 class AdminPage : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -51,7 +57,9 @@ fun AdminPageContent() {
 
 
     Box(modifier = Modifier.fillMaxSize()) {
-       // BackgroundImage()
+        // BackgroundImage()
+
+
         Column(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.Center,
@@ -135,8 +143,9 @@ fun AdminPageContent() {
                         tenderName,
                         tenderPhoneNumber,
                         tenderEmail,
-                        budget
-                    )
+                        budget,
+
+                        )
                 },
                 modifier = Modifier.align(Alignment.End)
             ) {
@@ -152,41 +161,43 @@ fun AdminPageContent() {
 
 
 private fun saveDetailsToFirestore(
-context: Context,
-projectType: String,
-projectName: String,
-tenderName: String,
-tenderPhoneNumber: String,
-tenderEmail: String,
-budget: String
+    context: Context,
+    projectType: String,
+    projectName: String,
+    tenderName: String,
+    tenderPhoneNumber: String,
+    tenderEmail: String,
+    budget: String
 ) {
-val firestore = FirebaseFirestore.getInstance()
+    val firestore = FirebaseFirestore.getInstance()
 
-val data = hashMapOf(
-"projectType" to projectType,
-"projectName" to projectName,
-"tenderName" to tenderName,
-"tenderPhoneNumber" to tenderPhoneNumber,
-"tenderEmail" to tenderEmail,
-"budget" to budget
-)
+    val data = hashMapOf(
+        "projectType" to projectType,
+        "projectName" to projectName,
+        "tenderName" to tenderName,
+        "tenderPhoneNumber" to tenderPhoneNumber,
+        "tenderEmail" to tenderEmail,
+        "budget" to budget
+    )
 
-firestore.collection("adminProjects")
-.add(data)
-.addOnSuccessListener {
- // Data saved successfully
- Toast.makeText(context, "Details saved successfully", Toast.LENGTH_SHORT).show()
-}
-.addOnFailureListener {
- // Error occurred while saving data
- Toast.makeText(context, "Error saving details", Toast.LENGTH_SHORT).show()
-}
+
+
+    firestore.collection("adminProjects")
+        .add(data)
+        .addOnSuccessListener {
+            // Data saved successfully
+            Toast.makeText(context, "Details saved successfully", Toast.LENGTH_SHORT).show()
+        }
+        .addOnFailureListener {
+            // Error occurred while saving data
+            Toast.makeText(context, "Error saving details", Toast.LENGTH_SHORT).show()
+        }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AdminPageContentPreview() {
-ProjectTheme {
-AdminPageContent()
-}
+    ProjectTheme {
+        AdminPageContent()
+    }
 }

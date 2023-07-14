@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -16,7 +17,9 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
@@ -47,6 +50,7 @@ class LoginActivity : ComponentActivity() {
         val context = LocalContext.current
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
+        val isRegisterClicked = remember { mutableStateOf(false) }
 
         Column(
             modifier = Modifier
@@ -73,6 +77,8 @@ class LoginActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+
+
             Button(
                 onClick = {
                     // Handle login button click
@@ -82,6 +88,20 @@ class LoginActivity : ComponentActivity() {
             ) {
                 Text("Login")
             }
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(text = "Don't have Account?")
+            Text(text = "Register Here?",
+                fontStyle = FontStyle.Italic,
+            color =if (isRegisterClicked.value) Color.Red else Color.Blue,
+                modifier = Modifier.clickable {
+                    isRegisterClicked.value = true
+                    // Handle the click event here if needed
+                    // Navigate to the login page
+                    val intent = Intent(context, MainActivity::class.java)
+                    context.startActivity(intent)
+                }
+            )
+
         }
     }
 
