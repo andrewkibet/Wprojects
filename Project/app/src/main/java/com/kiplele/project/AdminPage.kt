@@ -29,7 +29,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.kiplele.project.ui.theme.ProjectTheme
 import java.io.ByteArrayOutputStream
 import java.util.UUID
-
+/*
 class AdminPage : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -197,7 +197,11 @@ private fun saveDetailsToFirestore(
 @Preview(showBackground = true)
 @Composable
 fun AdminPageContentPreview() {
+
+
     ProjectTheme {
+
         AdminPageContent()
     }
 }
+*/
