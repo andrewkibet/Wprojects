@@ -141,7 +141,7 @@ class MainActivity : ComponentActivity() {
                             isRegisterClicked.value = true
                             // Handle the click event here if needed
                             // Navigate to the login page
-                            val intent = Intent(context, MainActivity::class.java)
+                            val intent = Intent(context, LoginActivity::class.java)
                             context.startActivity(intent)
                         }
                     )

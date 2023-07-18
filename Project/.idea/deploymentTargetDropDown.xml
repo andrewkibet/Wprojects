@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetDropDown">
+<<<<<<< second
+    <runningDeviceTargetSelectedWithDropDown>
+=======
     <runningDeviceTargetsSelectedWithDialog>
+>>>>>>> main
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
+<<<<<<< second
+            <type value="SERIAL_NUMBER" />
+            <value value="A00000K580140902118" />
+          </Key>
+        </deviceKey>
+      </Target>
+    </runningDeviceTargetSelectedWithDropDown>
+    <timeTargetWasSelectedWithDropDown value="2023-07-17T23:53:50.025707900Z" />
+=======
             <type value="VIRTUAL_DEVICE_PATH" />
             <value value="C:\Users\Admin\.android\avd\5.1_29.avd" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetsSelectedWithDialog>
+>>>>>>> main
   </component>
 </project>
