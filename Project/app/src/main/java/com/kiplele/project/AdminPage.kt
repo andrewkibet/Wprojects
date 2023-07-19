@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.kiplele.project.ui.theme.ProjectTheme
 import java.io.ByteArrayOutputStream
 import java.util.UUID
-/*
+
 class AdminPage : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -203,4 +203,3 @@ fun AdminPageContentPreview() {
         AdminPageContent()
     }
 }
-*/
