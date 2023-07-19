@@ -28,11 +28,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
-import com.kiplele.project.LoginActivity
-import com.kiplele.project.R
 import com.kiplele.project.ui.theme.ProjectTheme
 
-class MainActivity : ComponentActivity() {
+class RegistrationActivity : ComponentActivity() {
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -198,7 +196,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun RegistrationScreenPreview() {
         ProjectTheme {
-            MainActivity().RegistrationScreen()
+            RegistrationActivity().RegistrationScreen()
         }
     }
 }
