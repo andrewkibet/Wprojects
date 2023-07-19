@@ -1,6 +1,5 @@
 package com.kiplele.project
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,7 +7,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -32,54 +30,44 @@ class MainActivity : ComponentActivity() {
 
 
 
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-
-            Scaffold(){
-
-
-                ProjectTheme {
-                    // A surface container using the 'background' color from the theme
-                    Surface(
+            ProjectTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Column(
                         modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Column(
-                            modifier = Modifier.fillMaxSize(),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = "Title",
-                                // style = MaterialTheme.typography.h4,
-                                modifier = Modifier.padding(top = 16.dp)
-                            )
+                        Text(
+                            text = "Title",
+                           // style = MaterialTheme.typography.h4,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
 
-                            Image(
-                                painter = painterResource(id = R.drawable.walpaper),
-                                contentDescription = "Image",
-                                modifier = Modifier
-                                    .padding(16.dp)
-                                    .size(200.dp)
-                                    .aspectRatio(1f)
-                            )
+                        Image(
+                            painter = painterResource(id = R.drawable.walpaper),
+                            contentDescription = "Image",
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .size(200.dp)
+                                .aspectRatio(1f)
+                        )
 
-                            Text(
-                                text = "Image Name",
-                                //   style = MaterialTheme.typography.body1,
-                                modifier = Modifier.padding(bottom = 16.dp)
-                            )
-                        }
+                        Text(
+                            text = "Image Name",
+                         //   style = MaterialTheme.typography.body1,
+                            modifier = Modifier.padding(bottom = 16.dp)
+                        )
                     }
                 }
-
             }
-
-
         }
     }
 }
