@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="Manifest.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="Manifest.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,12 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
-
-    <activity android:name=".AdminPage"
-        android:exported="false"
-        android:label="@string/title_activity_project_list"
-        android:theme="@style/Theme.Project" />
-
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Project" />
+        <activity
+            android:name=".AdminPage"
+            android:exported="false"
+            android:label="@string/title_activity_project_list"
+            android:theme="@style/Theme.Project" />
         <activity
             android:name=".ProjectList"
             android:exported="false"

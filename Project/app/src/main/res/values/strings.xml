@@ -5,5 +5,6 @@
     <string name="title_activity_project_list">ProjectList</string>
     <string name="title_activity_admin_page">AdminPage</string>
     <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>
