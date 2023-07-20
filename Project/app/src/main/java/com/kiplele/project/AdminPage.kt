@@ -52,7 +52,6 @@ fun AdminPageContent() {
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
 
-    val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
 
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -67,25 +66,7 @@ fun AdminPageContent() {
             Box(modifier = Modifier.fillMaxWidth()){
 
             }
-            DropdownMenu(
-                expanded = false, // Set to true when the dropdown is open
-                onDismissRequest = { /* Handle dismiss request */ },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-/* projectTypes.forEach { projectType ->
-     DropdownMenuItem(
-         onClick = {
-             selectedProjectType = projectType // Update the selected project type when clicked
-         }
-     ) {
-         Text(projectType)
-     }
- }
 
- */
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
 
             TextField(
                 value = projectName,
