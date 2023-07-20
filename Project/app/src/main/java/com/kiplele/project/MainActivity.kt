@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
+                       // verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
