@@ -25,11 +25,6 @@ import com.kiplele.project.ui.theme.Typography
 import com.kiplele.project.ui.ui.theme.Typography
 
 class MainActivity : ComponentActivity() {
-
-
-
-
-
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +64,12 @@ class MainActivity : ComponentActivity() {
                         Text(text = "Projects")
                         Text(text = "Stakeholders")
                         Text(text = "News")
-                        Text(text = "Projects")
+                        Text(text = "Projects",
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .size(200.dp)
+                                .aspectRatio(1f
+                                ))
 
 
 
