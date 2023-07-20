@@ -65,6 +65,7 @@ class MainActivity : ComponentActivity() {
                         Text(text = "Stakeholders")
                         Text(text = "News")
                         Text(text = "Projects",
+
                             modifier = Modifier
                                 .padding(16.dp)
                                 .size(200.dp)
