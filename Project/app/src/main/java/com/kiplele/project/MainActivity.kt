@@ -65,6 +65,8 @@ class MainActivity : ComponentActivity() {
                          //   style = MaterialTheme.typography.body1,
                             modifier = Modifier.padding(bottom = 16.dp)
                         )
+                        Spacer(modifier = Modifier.height(16.dp))
+
                     }
                 }
             }
