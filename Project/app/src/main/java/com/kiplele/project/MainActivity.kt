@@ -66,6 +66,12 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.padding(bottom = 16.dp)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
+                        Text(text = "Projects")
+                        Text(text = "Projects")
+                        Text(text = "Projects")
+                        Text(text = "Projects")
+
+
 
                     }
                 }
