@@ -1,9 +1,11 @@
 package com.kiplele.project
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -69,8 +71,10 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .padding(16.dp)
                                 .size(200.dp)
-                                .aspectRatio(1f
-                                ))
+                                .aspectRatio(1f)
+                                .clickable { val intent = Intent(this@MainActivity, ProjectList::class.java)
+                                    startActivity(intent) }
+                        )
 
 
 
