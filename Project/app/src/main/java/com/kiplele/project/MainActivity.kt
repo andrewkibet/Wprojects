@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -101,37 +102,47 @@ fun UiContent() {
         Spacer(modifier = Modifier.height(16.dp))
 
         // Left-align the "Projects" text
-        Text(
-            text = "Projects",
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            ),
-            modifier = Modifier.align(Alignment.Start)
-        )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
+            item {
+                Text(
+                    text = "Projects",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    ),
+                    modifier = Modifier.padding(start = 16.dp)
+                )
+            }
 
-        // Left-align the "Stakeholders" text
-        Text(
-            text = "Stakeholders",
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            ),
-            modifier = Modifier.align(Alignment.Start)
-        )
+            item {
+                Text(
+                    text = "Stakeholders",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    ),
+                    modifier = Modifier.padding(start = 16.dp)
+                )
+            }
 
-        // Left-align the "News" text
-        Text(
-            text = "News",
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            ),
-            modifier = Modifier.align(Alignment.Start)
-        )
+            item {
+                Text(
+                    text = "News",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    ),
+                    modifier = Modifier.padding(start = 16.dp)
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -143,11 +154,14 @@ fun UiContent() {
                 color = Color.Black
             ),
             modifier = Modifier
-                .align(Alignment.Start)
+                .padding(16.dp)
+                .size(200.dp)
+                .aspectRatio(1f)
                 .clickable {
                     val intent = Intent(context, ProjectList::class.java)
                     context.startActivity(intent)
                 }
+                .align(Alignment.Start) // Align to the left
         )
     }
 }
