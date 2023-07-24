@@ -64,7 +64,9 @@ class MainActivity : ComponentActivity() {
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(text = "Projects")
+                        Spacer(modifier = Modifier.height(16.dp))
                         Text(text = "Stakeholders")
+                        Spacer(modifier = Modifier.height(16.dp))
                         Text(text = "News")
                         Text(text = "Projects",
 
