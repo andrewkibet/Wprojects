@@ -115,7 +115,12 @@ fun UiContent() {
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     ),
-                    modifier = Modifier.padding(start = 16.dp)
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+                        .clickable {
+                            val intent = Intent(context, ProjectList::class.java)
+                            context.startActivity(intent)
+                        }
                 )
             }
 
