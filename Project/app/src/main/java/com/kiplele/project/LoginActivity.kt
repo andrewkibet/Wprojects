@@ -1,4 +1,5 @@
 package com.kiplele.project
+
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -7,9 +8,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-//import androidx.compose.foundation.layout.BoxScopeInstance.align
-//import androidx.compose.foundation.layout.ColumnScopeInstance.align
-//import androidx.compose.foundation.layout.RowScopeInstance.align
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -50,9 +48,9 @@ class LoginActivity : ComponentActivity() {
     @Composable
     fun LoginScreen() {
         val context = LocalContext.current
-
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
+        val isRegisterClicked = remember { mutableStateOf(false) }
 
         Column(
             modifier = Modifier
@@ -79,52 +77,38 @@ class LoginActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            LoginButton(
-                email = email,
-                password = password,
-                onLoginClick = { loginUser(context, email, password) }
-            )
+            Button(
+                onClick = {
+                    // Handle login button click
+                    loginUser(context, email, password)
+                },
+                modifier = Modifier.align(Alignment.End)
+            ) {
+                Text("Login")
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            RegistrationLink(
-                isRegisterClicked = { isRegisterClicked -> loginUser(context, email, password, isRegisterClicked) }
-            )
-        }
-    }
-
-    @Composable
-    private fun LoginButton(email: String, password: String, onLoginClick: () -> Unit) {
-        Button(
-            onClick = { onLoginClick() },
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text("Login")
-        }
-    }
-
-    @Composable
-    private fun RegistrationLink(isRegisterClicked: (Boolean) -> Unit) {
-        val context = LocalContext.current
-        Text(
-            text = "Don't have an account?",
-            modifier = Modifier.clickable {
-                // Handle the click event here if needed
-                // Navigate to the registration page
-                val intent = Intent(context, RegistrationActivity::class.java)
-                context.startActivity(intent)
-
-                // Notify the state that registration is clicked
-                isRegisterClicked(true)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "Don't have an account?", fontSize = 14.sp)
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = "Register Here",
+                    fontStyle = FontStyle.Italic,
+                    color = if (isRegisterClicked.value) Color.Red else Color.Blue,
+                    modifier = Modifier.clickable {
+                        isRegisterClicked.value = true
+                        // Handle the click event here if needed
+                        // Navigate to the login page
+                        val intent = Intent(context, RegistrationActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                )
             }
-        )
+        }
     }
 
-    private fun loginUser(context: Context, email: String, password: String, isRegisterClicked: Boolean = false) {
-        if (isRegisterClicked) {
-            return // Do nothing if the user clicked on the registration link
-        }
-
+    private fun loginUser(context: Context, email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(context as Activity) { task ->
                 if (task.isSuccessful) {
