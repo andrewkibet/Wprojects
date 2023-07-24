@@ -148,26 +148,7 @@ fun UiContent() {
                 )
             }
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Projects",
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            ),
-            modifier = Modifier
-                .padding(16.dp)
-                .size(200.dp)
-                .aspectRatio(1f)
-                .clickable {
-                    val intent = Intent(context, ProjectList::class.java)
-                    context.startActivity(intent)
-                }
-                .align(Alignment.Start) // Align to the left
-        )
+        
     }
 }
 
