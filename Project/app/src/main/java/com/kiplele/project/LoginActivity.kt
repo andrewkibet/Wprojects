@@ -97,7 +97,7 @@ class LoginActivity : ComponentActivity() {
     private fun LoginButton(email: String, password: String, onLoginClick: () -> Unit) {
         Button(
             onClick = { onLoginClick() },
-            modifier = Modifier.align(Alignment.End)
+            modifier = Modifier.fillMaxSize()
         ) {
             Text("Login")
         }
