@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.firebase.auth.FirebaseAuth
 import com.kiplele.project.ui.theme.ProjectTheme
 
@@ -77,8 +78,6 @@ class LoginActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-
-
             Button(
                 onClick = {
                     // Handle login button click
@@ -88,20 +87,25 @@ class LoginActivity : ComponentActivity() {
             ) {
                 Text("Login")
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "Don't have Account?")
-            Text(text = "Register Here?",
-                fontStyle = FontStyle.Italic,
-            color =if (isRegisterClicked.value) Color.Red else Color.Blue,
-                modifier = Modifier.clickable {
-                    isRegisterClicked.value = true
-                    // Handle the click event here if needed
-                    // Navigate to the login page
-                    val intent = Intent(context, RegistrationActivity::class.java)
-                    context.startActivity(intent)
-                }
-            )
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(text = "Don't have an account?", fontSize = 14.sp)
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = "Register Here",
+                    fontStyle = FontStyle.Italic,
+                    color = if (isRegisterClicked.value) Color.Red else Color.Blue,
+                    modifier = Modifier.clickable {
+                        isRegisterClicked.value = true
+                        // Handle the click event here if needed
+                        // Navigate to the login page
+                        val intent = Intent(context, RegistrationActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                )
+            }
         }
     }
 
@@ -109,7 +113,7 @@ class LoginActivity : ComponentActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(context as Activity) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(context, ProjectList::class.java)
+                    val intent = Intent(context, MainActivity::class.java)
                     context.startActivity(intent)
                     context.finish() // Optionally finish the current activity
                     // Login success, handle the authenticated user here
