@@ -128,7 +128,8 @@ fun UiContent() {
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
-            )
+            ),
+            modifier = Modifier.align(Alignment.Start)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
