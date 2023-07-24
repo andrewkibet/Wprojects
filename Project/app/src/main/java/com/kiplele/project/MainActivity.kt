@@ -158,6 +158,10 @@ fun UiContent() {
                     ),
                     modifier = Modifier
                         .padding(start = 16.dp)
+                        .clickable {
+                            val intent = Intent(context, ProjectList::class.java)
+                            context.startActivity(intent)
+                        }
 
                 )
             }
