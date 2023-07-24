@@ -147,6 +147,18 @@ fun UiContent() {
                     modifier = Modifier.padding(start = 16.dp)
                 )
             }
+
+            item {
+                Text(
+                    text = "Admin",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    ),
+                    modifier = Modifier.padding(start = 16.dp)
+                )
+            }
         }
         
     }
