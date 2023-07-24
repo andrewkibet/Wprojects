@@ -88,7 +88,7 @@ fun UiContent() {
             ),
             modifier = Modifier.padding(bottom = 16.dp)
         )
-
+    }
         Spacer(modifier = Modifier.height(16.dp))
 
         // Left-align the "Projects" text
@@ -108,7 +108,7 @@ fun UiContent() {
                     context.startActivity(intent)
                 }
         )
-    }
+
 }
 
 // ... (remaining code)
