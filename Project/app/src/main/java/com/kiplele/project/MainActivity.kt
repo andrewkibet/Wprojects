@@ -16,12 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import com.kiplele.project.ui.theme.ProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,112 +38,85 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 )
                 {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally // Left-align the elements
-                    ) {
-                        Text(
-                            text = "Title",
-                            style = TextStyle(
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            ),
-                            modifier = Modifier.padding(top = 16.dp)
-                        )
-
-                        Image(
-                            painter = painterResource(id = R.drawable.walpaper),
-                            contentDescription = "Image",
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .size(200.dp)
-                                .aspectRatio(1f)
-                        )
-
-                        Text(
-                            text = "Image Name",
-                            style = TextStyle(
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color.Gray
-                            ),
-                            modifier = Modifier.padding(bottom = 16.dp)
-                        )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        // Left-align the "Projects" text
-                        Text(
-                            text = "Projects",
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            )
-                        )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        // Left-align the "Stakeholders" text
-                        Text(
-                            text = "Stakeholders",
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            )
-                        )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        // Left-align the "News" text
-                        Text(
-                            text = "News",
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            )
-                        )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        Text(
-                            text = "Projects",
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            ),
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .size(200.dp)
-                                .aspectRatio(1f)
-                                .clickable {
-                                    val intent = Intent(
-                                        this@MainActivity,
-                                        ProjectList::class.java
-                                    )
-                                    startActivity(intent)
-                                }
-                        )
-                    }
+                    UiContent()
                 }
             }
         }
     }
 }
 
-@Composable
-fun UiContent(){
+// ... (previous code)
 
+@Composable
+fun UiContent() {
+    val context = LocalContext.current
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally // Left-align the elements
+    ) {
+
+        Text(
+            text = "Title",
+            style = TextStyle(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            ),
+            modifier = Modifier.padding(top = 16.dp)
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.walpaper),
+            contentDescription = "Image",
+            modifier = Modifier
+                .padding(16.dp)
+                .size(200.dp)
+                .aspectRatio(1f)
+                .clickable {
+                    val intent = Intent(context, ProjectList::class.java)
+                    context.startActivity(intent)
+                }
+        )
+
+        Text(
+            text = "Image Name",
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.Gray
+            ),
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Left-align the "Projects" text
+        Text(
+            text = "Projects",
+            style = TextStyle(
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            ),
+            modifier = Modifier
+                .padding(16.dp)
+                .size(200.dp)
+                .aspectRatio(1f)
+                .clickable {
+                    val intent = Intent(context, ProjectList::class.java)
+                    context.startActivity(intent)
+                }
+        )
+    }
 }
+
+// ... (remaining code)
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ProjectTheme {
-        MainActivity()
+        UiContent()
     }
 }
