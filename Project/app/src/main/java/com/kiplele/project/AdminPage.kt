@@ -72,17 +72,7 @@ fun AdminPageContent() {
                 onDismissRequest = { /* Handle dismiss request */ },
                 modifier = Modifier.fillMaxWidth()
             ) {
-/* projectTypes.forEach { projectType ->
-     DropdownMenuItem(
-         onClick = {
-             selectedProjectType = projectType // Update the selected project type when clicked
-         }
-     ) {
-         Text(projectType)
-     }
- }
 
- */
             }
 
             Spacer(modifier = Modifier.height(16.dp))
