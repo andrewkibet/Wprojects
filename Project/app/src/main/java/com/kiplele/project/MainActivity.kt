@@ -47,51 +47,91 @@ class MainActivity : ComponentActivity() {
 
 // ... (previous code)
 
+// ... (previous code)
+
 @Composable
 fun UiContent() {
     val context = LocalContext.current
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally // Left-align the elements
+        horizontalAlignment = Alignment.CenterHorizontally // Center-align the elements vertically
     ) {
-
-        Text(
-            text = "Title",
-            style = TextStyle(
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            ),
-            modifier = Modifier.padding(top = 16.dp)
-        )
-
-        Image(
-            painter = painterResource(id = R.drawable.walpaper),
-            contentDescription = "Image",
+        Row(
             modifier = Modifier
-                .padding(16.dp)
-                .size(200.dp)
-                .aspectRatio(1f)
-                .clickable {
-                    val intent = Intent(context, ProjectList::class.java)
-                    context.startActivity(intent)
-                }
-        )
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            horizontalArrangement = Arrangement.Center // Center-align the elements horizontally
+        ) {
+            // Center-align the "Title", "Image", and "Image Name"
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Title",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    ),
+                    modifier = Modifier.padding(top = 16.dp)
+                )
 
-        Text(
-            text = "Image Name",
-            style = TextStyle(
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Normal,
-                color = Color.Gray
-            ),
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-    }
+                Image(
+                    painter = painterResource(id = R.drawable.walpaper),
+                    contentDescription = "Image",
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .size(200.dp)
+                        .aspectRatio(1f)
+                )
+
+                Text(
+                    text = "Image Name",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.Gray
+                    ),
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+            }
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
 
         // Left-align the "Projects" text
+        Text(
+            text = "Projects",
+            style = TextStyle(
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+        )
+
+        // Left-align the "Stakeholders" text
+        Text(
+            text = "Stakeholders",
+            style = TextStyle(
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+        )
+
+        // Left-align the "News" text
+        Text(
+            text = "News",
+            style = TextStyle(
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text = "Projects",
             style = TextStyle(
@@ -108,10 +148,10 @@ fun UiContent() {
                     context.startActivity(intent)
                 }
         )
-
+    }
 }
 
-// ... (remaining code)
+
 
 @Preview(showBackground = true)
 @Composable
