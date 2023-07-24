@@ -67,18 +67,16 @@ class MainActivity : ComponentActivity() {
                         Row(verticalAlignment = Alignment.CenterVertically) {
 
                             Text(text = "Projects",
-                            )
-
+                            ) }
                             Spacer(modifier = Modifier.height(16.dp))
 
-                            Text(text = "Stakeholders")
-
-                            Spacer(modifier = Modifier.height(16.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
 
                             Text(text = "News",
-                            )
+                            ) }
+                        Spacer(modifier = Modifier.height(16.dp))
 
-                            Spacer(modifier = Modifier.height(16.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
 
                             Text(text = "Projects",
 
@@ -88,11 +86,15 @@ class MainActivity : ComponentActivity() {
                                     .aspectRatio(1f)
                                     .clickable { val intent = Intent(this@MainActivity, ProjectList::class.java)
                                         startActivity(intent) }
-                            )
+                            ) }
+                        Spacer(modifier = Modifier.height(16.dp))
 
 
 
-                        }
+
+
+
+
 
                     }
                 }
