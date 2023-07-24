@@ -107,7 +107,8 @@ fun UiContent() {
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
-            )
+            ),
+            modifier = Modifier.align(Alignment.Start)
         )
 
         // Left-align the "Stakeholders" text
@@ -144,6 +145,7 @@ fun UiContent() {
             modifier = Modifier
                 .padding(16.dp)
                 .size(200.dp)
+                .align(Alignment.Start)
                 .aspectRatio(1f)
                 .clickable {
                     val intent = Intent(context, ProjectList::class.java)
