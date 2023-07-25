@@ -39,10 +39,16 @@ import androidx.compose.ui.unit.dp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kiplele.project.ui.theme.ProjectTheme
 
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 class AdminPage : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        FirebaseOptions.fromResource(this)?.let { FirebaseApp.initializeApp(this, it) }
         setContent {
             ProjectTheme {
                 AdminPageContent()
