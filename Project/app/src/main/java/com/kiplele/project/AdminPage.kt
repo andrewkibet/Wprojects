@@ -70,7 +70,7 @@ fun AdminPageContent() {
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
 
-    var selectedImageFile by remember { mutableStateOf<File?>(null) }
+    var selectedImageFile : File?
 
     val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
 
