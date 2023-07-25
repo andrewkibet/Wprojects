@@ -18,6 +18,7 @@ import java.io.IOException
 
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -70,7 +71,7 @@ fun AdminPageContent() {
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
 
-    var selectedImageFile : File?
+    var selectedImageFile by remember { mutableStateOf<File?>(null) }
 
     val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
 
@@ -197,6 +198,7 @@ fun AdminPageContent() {
 
 
 
+
 private fun saveDetailsToFirestore(
     context: Context,
     projectType: String,
@@ -209,29 +211,74 @@ private fun saveDetailsToFirestore(
 ) {
     val firestore = FirebaseFirestore.getInstance()
 
-    val data = hashMapOf(
-        "projectType" to projectType,
-        "projectName" to projectName,
-        "tenderName" to tenderName,
-        "tenderPhoneNumber" to tenderPhoneNumber,
-        "tenderEmail" to tenderEmail,
-        "budget" to budget
-    )
+    // Generate a unique image filename using UUID
+    val imageFileName = UUID.randomUUID().toString()
 
+    // Reference to Firebase Storage
+    val storageRef: StorageReference = FirebaseStorage.getInstance().reference.child("images/$imageFileName")
 
+    // Upload the image file to Firebase Storage
+    selectedImageFile?.let { file ->
+        storageRef.putFile(Uri.fromFile(file))
+            .addOnSuccessListener { taskSnapshot ->
+                // Image upload successful, get the image URL
+                taskSnapshot.storage.downloadUrl.addOnCompleteListener { urlTask ->
+                    if (urlTask.isSuccessful) {
+                        val imageUrl = urlTask.result.toString()
 
-    firestore.collection("adminProjects")
-        .add(data)
-        .addOnSuccessListener {
-            // Data saved successfully
-            Toast.makeText(context, "Details saved successfully", Toast.LENGTH_SHORT).show()
-        }
-        .addOnFailureListener {
-            // Error occurred while saving data
-            Toast.makeText(context, "Error saving details", Toast.LENGTH_SHORT).show()
-        }
+                        // Data to be saved in Firestore
+                        val data = hashMapOf(
+                            "projectType" to projectType,
+                            "projectName" to projectName,
+                            "tenderName" to tenderName,
+                            "tenderPhoneNumber" to tenderPhoneNumber,
+                            "tenderEmail" to tenderEmail,
+                            "budget" to budget,
+                            "imageUrl" to imageUrl // Add the image URL to the data
+                        )
+
+                        // Save the data to Firestore
+                        firestore.collection("adminProjects")
+                            .add(data)
+                            .addOnSuccessListener {
+                                // Data saved successfully
+                                Toast.makeText(context, "Details saved successfully", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener {
+                                // Error occurred while saving data
+                                Toast.makeText(context, "Error saving details", Toast.LENGTH_SHORT).show()
+                            }
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Error occurred while uploading the image
+                Toast.makeText(context, "Error uploading image: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    } ?: run {
+        // Data to be saved in Firestore (without the image URL)
+        val data = hashMapOf(
+            "projectType" to projectType,
+            "projectName" to projectName,
+            "tenderName" to tenderName,
+            "tenderPhoneNumber" to tenderPhoneNumber,
+            "tenderEmail" to tenderEmail,
+            "budget" to budget
+        )
+
+        // Save the data to Firestore
+        firestore.collection("adminProjects")
+            .add(data)
+            .addOnSuccessListener {
+                // Data saved successfully
+                Toast.makeText(context, "Details saved successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                // Error occurred while saving data
+                Toast.makeText(context, "Error saving details", Toast.LENGTH_SHORT).show()
+            }
+    }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun AdminPageContentPreview() {
