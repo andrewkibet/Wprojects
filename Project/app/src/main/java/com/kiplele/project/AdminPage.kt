@@ -1,33 +1,43 @@
 package com.kiplele.project
 
 //import BackgroundImage
+
+import android.app.Activity
+import android.content.Intent
+import android.provider.MediaStore
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.runtime.remember
+import java.io.File
+import java.io.IOException
+
+
+
 import android.content.Context
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kiplele.project.ui.theme.ProjectTheme
-import java.io.ByteArrayOutputStream
-import java.util.UUID
 
 class AdminPage : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -52,8 +62,26 @@ fun AdminPageContent() {
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
 
+    var selectedImageFile by remember { mutableStateOf<File?>(null) }
+
     val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
 
+
+    // Image picker launcher
+    val imagePickerLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val intent = result.data
+            intent?.data?.let { uri ->
+                // Convert the selected image URI to a file and store it in the state variable
+                try {
+                    val selectedFile = File(uri.toString())
+                    selectedImageFile = selectedFile
+                } catch (e: IOException) {
+                    // Handle file access error if necessary
+                }
+            }
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         // BackgroundImage()
@@ -121,6 +149,17 @@ fun AdminPageContent() {
             )
 
             Spacer(modifier = Modifier.height(16.dp))
+            OutlinedButton(
+                onClick = {
+                    val imagePickerIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    imagePickerLauncher.launch(imagePickerIntent)
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add Image")
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Add Image")
+            }
 
             Button(
                 onClick = {
@@ -133,6 +172,7 @@ fun AdminPageContent() {
                         tenderPhoneNumber,
                         tenderEmail,
                         budget,
+                        selectedImageFile
 
                         )
                 },
@@ -156,7 +196,8 @@ private fun saveDetailsToFirestore(
     tenderName: String,
     tenderPhoneNumber: String,
     tenderEmail: String,
-    budget: String
+    budget: String,
+    selectedImageFile: File?
 ) {
     val firestore = FirebaseFirestore.getInstance()
 
