@@ -70,20 +70,7 @@ fun AdminPageContent() {
 
 
     // Image picker launcher
-    val imagePickerLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
-            intent?.data?.let { uri ->
-                // Convert the selected image URI to a file and store it in the state variable
-                try {
-                    val selectedFile = File(uri.toString())
-                    selectedImageFile = selectedFile
-                } catch (e: IOException) {
-                    // Handle file access error if necessary
-                }
-            }
-        }
-    }
+
 
     Box(modifier = Modifier.fillMaxSize()) {
         // BackgroundImage()
@@ -151,17 +138,7 @@ fun AdminPageContent() {
             )
 
             Spacer(modifier = Modifier.height(16.dp))
-            OutlinedButton(
-                onClick = {
-                    val imagePickerIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    imagePickerLauncher.launch(imagePickerIntent)
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add Image")
-                Spacer(modifier = Modifier.width(8.dp))
-                Text("Add Image")
-            }
+
 
             Button(
                 onClick = {
