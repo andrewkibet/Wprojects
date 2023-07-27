@@ -65,6 +65,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.firebase.storage.FirebaseStorage
 
 class AdminPage : ComponentActivity() {
 
@@ -115,8 +116,9 @@ fun AdminPageContent() {
 
         Column(
             modifier = Modifier
+                .verticalScroll(rememberScrollState())
                 .padding(16.dp),
-                //.verticalScroll(rememberScrollState()),
+
 
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -225,6 +227,7 @@ fun AdminPageContent() {
                         tenderPhoneNumber,
                         tenderEmail,
                         budget,
+                        imageUri
 
                         )
                 },
@@ -250,9 +253,34 @@ private fun saveDetailsToFirestore(
     tenderName: String,
     tenderPhoneNumber: String,
     tenderEmail: String,
-    budget: String
+    budget: String,
+    imageUri: Uri? // Add imageUri as a parameter
 ) {
     val firestore = FirebaseFirestore.getInstance()
+    val storage = FirebaseStorage.getInstance()
+
+    // Create a reference to the Firebase Storage location where you want to upload the image
+    val imageRef = storage.reference.child("project_images/${System.currentTimeMillis()}_${imageUri?.lastPathSegment}")
+
+    // Upload the image to Firebase Storage
+    imageUri?.let {
+        val uploadTask = imageRef.putFile(it)
+
+        // You can also add listeners to track the progress of the upload if needed
+        // uploadTask.addOnProgressListener { ... }
+        // uploadTask.addOnFailureListener { ... }
+
+        // After the image is successfully uploaded, get the download URL
+        uploadTask.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            imageRef.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
 
     val data = hashMapOf(
         "projectType" to projectType,
@@ -260,7 +288,8 @@ private fun saveDetailsToFirestore(
         "tenderName" to tenderName,
         "tenderPhoneNumber" to tenderPhoneNumber,
         "tenderEmail" to tenderEmail,
-        "budget" to budget
+        "budget" to budget,
+        "Image" to downloadUri.toString()
     )
 
 
@@ -275,9 +304,12 @@ private fun saveDetailsToFirestore(
             // Error occurred while saving data
             Toast.makeText(context, "Error saving details", Toast.LENGTH_SHORT).show()
         }
-}
+} else{
+    //Handle the error if getting the  download url fails
+    Toast.makeText(context,"Error uploading the Image", Toast.LENGTH_SHORT).show()
+            }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun AdminPageContentPreview() {
 
@@ -286,4 +318,4 @@ fun AdminPageContentPreview() {
 
         AdminPageContent()
     }
-}
+}}}}
