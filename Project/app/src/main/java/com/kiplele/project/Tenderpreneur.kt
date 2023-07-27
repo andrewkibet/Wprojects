@@ -84,3 +84,13 @@ fun PickImageFromGallery() {
     }
 
 }
+
+@Preview
+@Composable
+fun Tpreview(){
+    ProjectTheme {
+
+        PickImageFromGallery()
+    }
+
+}
