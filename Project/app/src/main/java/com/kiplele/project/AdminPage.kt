@@ -1,50 +1,38 @@
 package com.kiplele.project
 
 //import BackgroundImage
-
-import android.app.Activity
-import android.content.Intent
-import android.provider.MediaStore
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.remember
-import java.io.File
-import java.io.IOException
-
-
-
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kiplele.project.ui.theme.ProjectTheme
-
+import java.io.ByteArrayOutputStream
+import java.util.UUID
 
 class AdminPage : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             ProjectTheme {
                 AdminPageContent()
@@ -64,12 +52,7 @@ fun AdminPageContent() {
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
 
-    var selectedImageFile by remember { mutableStateOf<File?>(null) }
-
     val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
-
-
-    // Image picker launcher
 
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -139,7 +122,6 @@ fun AdminPageContent() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-
             Button(
                 onClick = {
                     // Save the details in Firestore
@@ -151,7 +133,6 @@ fun AdminPageContent() {
                         tenderPhoneNumber,
                         tenderEmail,
                         budget,
-                        selectedImageFile
 
                         )
                 },
@@ -175,8 +156,7 @@ private fun saveDetailsToFirestore(
     tenderName: String,
     tenderPhoneNumber: String,
     tenderEmail: String,
-    budget: String,
-    selectedImageFile: File?
+    budget: String
 ) {
     val firestore = FirebaseFirestore.getInstance()
 

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -75,8 +74,6 @@ class LoginActivity : ComponentActivity() {
                 label = { Text("Password") },
                 modifier = Modifier.fillMaxWidth()
             )
-            if (email.isEmpty() || password.isEmpty()) {
-                RedBulb()}
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -105,24 +102,6 @@ class LoginActivity : ComponentActivity() {
                 }
             )
 
-        }
-    }
-
-    @Composable
-    fun RedBulb() {
-        Box(
-            modifier = Modifier
-                .size(24.dp)
-                .background(Color.Red, shape = MaterialTheme.shapes.small)
-        ) {
-            // Customize the red bulb icon as per your requirement
-            // For example, you can use an Icon composable here
-            // For now, we'll use a Text composable with a red bulb emoji
-            Text(
-                text = "🚨",
-                color = Color.White,
-                modifier = Modifier.align(Alignment.Center)
-            )
         }
     }
 
