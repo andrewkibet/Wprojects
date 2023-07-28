@@ -32,8 +32,13 @@ import androidx.compose.ui.unit.dp
 
 class Tenderpreneur : ComponentActivity() {   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContent {
-        PickImageFromGallery()
+    setContent {    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    )
+    {
+        UiContent()
+    }
     }
 }
 }
