@@ -1,6 +1,5 @@
 package com.kiplele.project
-
-import android.content.Intent
+/*
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,19 +11,25 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.Typography
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.launch
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
 import com.kiplele.project.ui.theme.ProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,8 +42,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
-                )
-                {
+                ) {
                     UiContent()
                 }
             }
@@ -46,13 +50,18 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// ... (previous code)
-
-// ... (previous code)
-
 @Composable
 fun UiContent() {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var fetchedImageBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+
+    val imageUri: Uri? = null // Set your image URI here
+
+    // Fetch the image from Firebase Storage
+    LaunchedEffect(Unit) {
+        fetchedImageBitmap = fetchImageFromFirebase(imageUri)
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -78,14 +87,9 @@ fun UiContent() {
                     modifier = Modifier.padding(top = 16.dp)
                 )
 
-                Image(
-                    painter = painterResource(id = R.drawable.walpaper),
-                    contentDescription = "Image",
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .size(200.dp)
-                        .aspectRatio(1f)
-                )
+                fetchedImageBitmap?.let { bitmap ->
+                    Image(bitmap = bitmap, contentDescription = "Image")
+                }
 
                 Text(
                     text = "Image Name",
@@ -162,15 +166,30 @@ fun UiContent() {
                             val intent = Intent(context, AdminPage::class.java)
                             context.startActivity(intent)
                         }
-
                 )
             }
         }
-        
     }
 }
 
+private const val MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024 // 4MB (Adjust as needed)
 
+private suspend fun fetchImageFromFirebase(imageUri: Uri?): ImageBitmap? {
+    if (imageUri == null) return null
+
+    val firebaseStorage = Firebase.storage
+    val storageRef = firebaseStorage.reference
+    val imageRef = storageRef.child("project_images/${System.currentTimeMillis()}_${imageUri.lastPathSegment}")
+
+    return try {
+        val byteArray = imageRef.getBytes(MAX_IMAGE_SIZE_BYTES).await()
+        val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+        bitmap.asImageBitmap()
+    } catch (e: Exception) {
+        // Handle the error if fetching the image fails
+        null
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -179,3 +198,4 @@ fun DefaultPreview() {
         UiContent()
     }
 }
+*/
