@@ -25,6 +25,10 @@ import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
 //import com.kk.projectman.ui.theme.ProjectTheme
 import com.kk.projectman.ui.RegistrationActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class LoginActivity : ComponentActivity() {
     private lateinit var auth: FirebaseAuth
@@ -113,6 +117,13 @@ class LoginActivity : ComponentActivity() {
     }
 
     private fun loginUser(context: Context, email: String, password: String) {
+
+      // Set loading state to true
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Simulate a small delay to show the progress bar
+            delay(500)
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(context as Activity) { task ->
                 if (task.isSuccessful) {
@@ -132,4 +143,4 @@ class LoginActivity : ComponentActivity() {
 fun LoginScreenPreview() {
         LoginActivity().LoginScreen()
 
-}
+}}
