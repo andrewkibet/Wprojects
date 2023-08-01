@@ -7,9 +7,96 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:995431166883:android:7252fa1ff3bb3c8c922016",
+        "android_client_info": {
+          "package_name": "com.example.imageuploader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995431166883-32c6j196li3ordvumdpiidn5pjukuh4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhD0FpQWF03ivW-xMptGNscgAL8_D89p4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995431166883-32c6j196li3ordvumdpiidn5pjukuh4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995431166883:android:ada67066dc1967b8922016",
+        "android_client_info": {
+          "package_name": "com.kiplele.mm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995431166883-32c6j196li3ordvumdpiidn5pjukuh4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhD0FpQWF03ivW-xMptGNscgAL8_D89p4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995431166883-32c6j196li3ordvumdpiidn5pjukuh4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:995431166883:android:1ce1575356ffdf35922016",
         "android_client_info": {
           "package_name": "com.kiplele.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995431166883-32c6j196li3ordvumdpiidn5pjukuh4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhD0FpQWF03ivW-xMptGNscgAL8_D89p4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995431166883-32c6j196li3ordvumdpiidn5pjukuh4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995431166883:android:98eb3368b89fc6ff922016",
+        "android_client_info": {
+          "package_name": "com.kk.projectman"
         }
       },
       "oauth_client": [
