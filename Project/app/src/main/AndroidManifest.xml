@@ -14,7 +14,7 @@
         android:theme="@style/Theme.ImageUploader"
         tools:targetApi="31">
         <activity
-            android:name=".ProjectList"
+            android:name=".LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_project_list"
             android:theme="@style/Theme.ImageUploader" />
@@ -34,7 +34,7 @@
             android:label="@string/title_activity_admin_page"
             android:theme="@style/Theme.ImageUploader" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ProjectList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
