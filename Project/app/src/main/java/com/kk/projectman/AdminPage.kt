@@ -286,17 +286,13 @@ private fun saveDetailsToFirestore(
                 //Handle the error if getting the  download url fails
                 Toast.makeText(context,"Error uploading the Image", Toast.LENGTH_SHORT).show()
             }
-
-
-
-            }}}
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
 fun AdminPageContentPreview() {
-
-
-
-
-    AdminPageContent()}
+    AdminPageContent()
+}
 
