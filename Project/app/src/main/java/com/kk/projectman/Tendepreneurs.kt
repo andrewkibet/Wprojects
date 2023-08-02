@@ -15,6 +15,9 @@ import com.google.firebase.storage.StorageReference
 
 class Tendepreneurs : AppCompatActivity() {
     private lateinit  var fab: FloatingActionButton
+    private lateinit var storageRef: StorageReference
+    private lateinit var firebaseFirestore: FirebaseFirestore
+    private var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
