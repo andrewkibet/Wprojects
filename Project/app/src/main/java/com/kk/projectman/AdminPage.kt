@@ -41,6 +41,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.storage.FirebaseStorage
 
@@ -286,7 +287,7 @@ private fun saveDetailsToFirestore(
                 Toast.makeText(context,"Error uploading the Image", Toast.LENGTH_SHORT).show()
             }
 
-            //@Preview(showBackground = true)
+            @Preview(showBackground = true)
             @Composable
             fun AdminPageContentPreview() {
 
