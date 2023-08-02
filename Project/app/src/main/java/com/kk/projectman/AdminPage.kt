@@ -287,14 +287,16 @@ private fun saveDetailsToFirestore(
                 Toast.makeText(context,"Error uploading the Image", Toast.LENGTH_SHORT).show()
             }
 
-            @Preview(showBackground = true)
-            @Composable
-            fun AdminPageContentPreview() {
+
+
+            }}}
+
+@Preview(showBackground = true)
+@Composable
+fun AdminPageContentPreview() {
 
 
 
 
-                AdminPageContent()
-
-            }}}}
+    AdminPageContent()}
 
