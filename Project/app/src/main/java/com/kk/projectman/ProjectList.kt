@@ -80,19 +80,22 @@ fun ProjectFields(project: Project) {
             value = projectType.orEmpty(),
             onValueChange = { projectType = it },
             label = { Text("Project Type") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            readOnly = true
         )
         TextField(
             value = projectName.orEmpty(),
             onValueChange = { projectName = it },
             label = { Text("Project Name") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            readOnly = true
         )
         TextField(
             value = tenderName.orEmpty(),
             onValueChange = { tenderName = it },
             label = { Text("Tender Name") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            readOnly = true
         )
         TextField(
             value = tenderPhoneNumber.orEmpty(),
@@ -104,13 +107,15 @@ fun ProjectFields(project: Project) {
             value = tenderEmail.orEmpty(),
             onValueChange = { tenderEmail = it },
             label = { Text("Tender Email") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            readOnly = true
         )
         TextField(
             value = budget.orEmpty(),
             onValueChange = { budget = it },
             label = { Text("Budget") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            readOnly = true
         )
     }
 }
