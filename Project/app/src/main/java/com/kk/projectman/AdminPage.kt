@@ -39,6 +39,7 @@ import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.tooling.preview.Preview
@@ -90,7 +91,11 @@ fun AdminPageContent() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         // BackgroundImage()
-
+        Column(modifier = Modifier.fillMaxSize()) {
+            TopAppBar(
+                title = { Text(text = "Admin Page") },
+                modifier = Modifier.fillMaxWidth()
+            )
 
         Column(
             modifier = Modifier
@@ -210,7 +215,7 @@ fun AdminPageContent() {
             }
         }
 
-    }
+    }}
 
 
 }
