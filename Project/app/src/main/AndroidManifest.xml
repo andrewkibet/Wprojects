@@ -14,6 +14,9 @@
         android:theme="@style/Theme.ImageUploader"
         tools:targetApi="31">
         <activity
+            android:name=".Tendepreneurs"
+            android:exported="false" />
+        <activity
             android:name=".AdminPage"
             android:exported="false" />
         <activity
