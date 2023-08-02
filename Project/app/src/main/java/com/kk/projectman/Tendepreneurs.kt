@@ -25,10 +25,56 @@ class Tendepreneurs : AppCompatActivity() {
         setContentView(R.layout.activity_tendepreneurs)
 
         fab = findViewById(R.id.fab)
+        fab.setOnClickListener(uploadImage())
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
 
-}
+    private fun uploadImage(): View.OnClickListener? {
+        binding.progressBar.visibility = View.VISIBLE
+        storageRef = storageRef.child(System.currentTimeMillis().toString())
+        imageUri?.let {
+            storageRef.putFile(it).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    storageRef.downloadUrl.addOnSuccessListener { uri ->
+
+                        val map = HashMap<String, Any>()
+                        map["pic"] = uri.toString()
+
+                        firebaseFirestore.collection("images").add(map)
+                            .addOnCompleteListener { firestoreTask ->
+
+                                if (firestoreTask.isSuccessful) {
+                                    Toast.makeText(
+                                        this,
+                                        "Uploaded Successfully",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                } else {
+                                    Toast.makeText(
+                                        this,
+                                        firestoreTask.exception?.message,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                }
+                                binding.progressBar.visibility = View.GONE
+                                binding.imageView.setImageResource(R.drawable.vector)
+
+                            }
+                    }
+                } else {
+                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
+                    binding.imageView.setImageResource(R.drawable.vector)
+                }
+            }
+        }
+
+
+    return null} }
