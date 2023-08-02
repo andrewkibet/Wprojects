@@ -2,6 +2,10 @@ package com.kk.projectman
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +18,8 @@ import com.kk.projectman.R
 
 class Tendepreneurs : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton
+    private lateinit var button: Button
+    private lateinit var imageview: ImageView
 
     private lateinit var storageRef: StorageReference
     private lateinit var firebaseFirestore: FirebaseFirestore
@@ -24,6 +30,8 @@ class Tendepreneurs : AppCompatActivity() {
         setContentView(R.layout.activity_tendepreneurs)
 
         fab = findViewById(R.id.fab)
+        imageview = findViewById(R.id.img3)
+        button = findViewById(R.id.btn)
 
         // Initialize Firebase Firestore and Firebase Storage
         firebaseFirestore = FirebaseFirestore.getInstance()
@@ -34,13 +42,23 @@ class Tendepreneurs : AppCompatActivity() {
             // Launch image picker to select an image
             pickImage.launch("image/*")
         }
+        button.setOnClickListener {
+            // Upload the displayed image to Firebase Storage
+            if (imageUri != null) {
+                uploadImageToStorage()
+            } else {
+                Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
+
 
     // Activity result contract for image picking
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             // Image picked, save the URI
             imageUri = uri
+            displayImagePreview()
             // Upload the image to Firestore Storage
             uploadImageToStorage()
         } else {
@@ -48,6 +66,18 @@ class Tendepreneurs : AppCompatActivity() {
             Toast.makeText(this, "Image picking failed", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun displayImagePreview() {
+        if (imageUri != null) {
+            // Show the ImageView and set the image resource to the selected image
+            imageview.visibility = View.VISIBLE
+            imageview.setImageURI(imageUri)
+        } else {
+            // Hide the ImageView if no image is selected
+            imageview.visibility = View.GONE
+        }
+    }
+
 
     private fun uploadImageToStorage() {
         if (imageUri != null) {
