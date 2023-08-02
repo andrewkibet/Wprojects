@@ -21,17 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabUploadImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_image" <!-- Replace with your image icon -->
-    app:layout_constraintTop_toTopOf="@id/addimage"
-    app:layout_constraintStart_toEndOf="@id/addimage"
-    app:layout_constraintBottom_toBottomOf="@id/addimage"
-    android:layout_marginStart="8dp"
-    android:layout_marginBottom="4dp"
-    />
+
 
     <TextView
         android:id="@+id/chatTextView"
@@ -56,10 +46,20 @@
         android:text="Add Image"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="75dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="456dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintStart_toEndOf="@+id/addimage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
 
     <!-- ImageView to Upload an Image from Gallery -->
