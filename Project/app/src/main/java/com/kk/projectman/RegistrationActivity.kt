@@ -1,4 +1,4 @@
-package com.kk.projectman.ui
+package com.kk.projectman
 
 import android.app.Activity
 import android.content.Intent
