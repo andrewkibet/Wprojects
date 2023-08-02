@@ -6,4 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".Tendepreneurs">
 
+
+    <TextView
+        android:id="@+id/txvtitle"
+        android:layout_width="279dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="108dp"
+        android:padding="16dp"
+        android:text="Update the Progress."
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_image" <!-- Replace with your image icon -->
+    app:layout_constraintTop_toTopOf="@id/addimage"
+    app:layout_constraintStart_toEndOf="@id/addimage"
+    app:layout_constraintBottom_toBottomOf="@id/addimage"
+    android:layout_marginStart="8dp"
+    android:layout_marginBottom="4dp"
+    />
+
+    <TextView
+        android:id="@+id/chatTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="364dp"
+        android:padding="16dp"
+        android:text="Chat..."
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addimage"
+        android:layout_width="194dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="448dp"
+        android:padding="16dp"
+        android:text="Add Image"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- ImageView to Upload an Image from Gallery -->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
