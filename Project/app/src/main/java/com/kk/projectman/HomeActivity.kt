@@ -8,12 +8,17 @@ import android.widget.TextView
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var txvadmin: TextView
+    private lateinit var stakeholders: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         txvadmin = findViewById(R.id.admin)
-        txvadmin.setOnClickListener { val intent =Intent(this,Tendepreneurs:: class.java)
-        startActivity(intent)}
+        txvadmin.setOnClickListener {
+            val intent = Intent(this@HomeActivity.applicationContext, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
