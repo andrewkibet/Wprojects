@@ -186,13 +186,7 @@ fun AdminPageContent() {
                 Text(text = "Pick Image")
             }
 
-            Button(onClick = { val intent = Intent(context,MainActivity::class.java)
-                             context.startActivity(intent)},
-                modifier = Modifier.align(Alignment.Start))
-            {
-                Text(text = "MainActivity")
 
-            }
 
             Spacer(modifier = Modifier.height(16.dp))
             Button(
