@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,6 +64,11 @@ class LoginActivity : ComponentActivity() {
         var isLoading by remember { mutableStateOf(false) } // Added a state to track loading state
 
 
+        Column(modifier = Modifier.fillMaxSize()) {
+            TopAppBar(
+                title = { Text(text = "Ward Projects") },
+                modifier = Modifier.fillMaxWidth()
+            )
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -117,7 +123,7 @@ class LoginActivity : ComponentActivity() {
 
 
             }}
-    }
+    }}
 
     private fun loginUser(context: Context, email: String, password: String) {
 
