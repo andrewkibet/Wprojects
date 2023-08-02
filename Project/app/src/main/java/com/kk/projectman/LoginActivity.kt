@@ -130,7 +130,7 @@ class LoginActivity : ComponentActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(context as Activity) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(context, ImagesActivity::class.java)
+                    val intent = Intent(context, HomeActivity::class.java)
                     context.startActivity(intent)
                     context.finish() // Optionally finish the current activity
                     // Login success, handle the authenticated user here
