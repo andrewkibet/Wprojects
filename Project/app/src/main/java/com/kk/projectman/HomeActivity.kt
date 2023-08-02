@@ -19,6 +19,11 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this@HomeActivity.applicationContext, MainActivity::class.java)
             startActivity(intent)
         }
+        stakeholders =  findViewById(R.id.stkholders)
+        stakeholders.setOnClickListener {
+            val intent = Intent(this@HomeActivity.applicationContext, Tendepreneurs::class.java)
+            startActivity(intent)
+        }
 
     }
 }
