@@ -16,7 +16,7 @@ class HomeActivity : AppCompatActivity() {
 
         txvadmin = findViewById(R.id.admin)
         txvadmin.setOnClickListener {
-            val intent = Intent(this@HomeActivity.applicationContext, MainActivity::class.java)
+            val intent = Intent(this@HomeActivity.applicationContext, AdminPage::class.java)
             startActivity(intent)
         }
         stakeholders =  findViewById(R.id.stkholders)
