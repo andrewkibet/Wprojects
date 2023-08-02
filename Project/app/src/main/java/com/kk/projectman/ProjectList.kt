@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -75,6 +76,11 @@ fun ProjectFields(project: Project) {
     var tenderEmail by remember { mutableStateOf(project.tenderEmail) }
     var budget by remember { mutableStateOf(project.budget) }
 
+    Column(modifier = Modifier.fillMaxSize()) {
+        TopAppBar(
+            title = { Text(text = "All Projects") },
+            modifier = Modifier.fillMaxWidth()
+        )
     Column {
         TextField(
             value = projectType.orEmpty(),
@@ -117,7 +123,7 @@ fun ProjectFields(project: Project) {
             modifier = Modifier.fillMaxWidth(),
             readOnly = true
         )
-    }
+    }}
 }
 
 
