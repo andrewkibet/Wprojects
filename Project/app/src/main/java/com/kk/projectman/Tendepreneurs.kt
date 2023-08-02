@@ -18,11 +18,17 @@ class Tendepreneurs : AppCompatActivity() {
     private lateinit var storageRef: StorageReference
     private lateinit var firebaseFirestore: FirebaseFirestore
     private var imageUri: Uri? = null
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tendepreneurs)
 
         fab = findViewById(R.id.fab)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
+
+
 }
