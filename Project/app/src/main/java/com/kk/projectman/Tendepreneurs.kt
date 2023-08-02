@@ -28,24 +28,17 @@ class Tendepreneurs : AppCompatActivity() {
         setContentView(R.layout.activity_tendepreneurs)
 
         fab = findViewById(R.id.fab)
-        //fab.setOnClickListener(uploadImage())
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        fab.setOnClickListener(uploadImage())
 
         initVars()
-        registerClickEvents()
+//        registerClickEvents()
     }
 
     private fun registerClickEvents() {
         fab.setOnClickListener(uploadImage())
 
-        binding.uploadBtn.setOnClickListener {
-            uploadImage()
-        }
 
-        binding.showAllBtn.setOnClickListener {
-            startActivity(Intent(this, ImagesActivity::class.java))
-        }
+
 
         binding.imageView.setOnClickListener {
             resultLauncher.launch("image/*")
