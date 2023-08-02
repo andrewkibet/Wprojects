@@ -53,13 +53,13 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="75dp"
         android:layout_height="67dp"
-        android:layout_marginTop="456dp"
+        android:layout_marginTop="460dp"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintHorizontal_bias="0.68"
         app:layout_constraintStart_toEndOf="@+id/addimage"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/add" />
 
 
     <!-- ImageView to Upload an Image from Gallery -->
