@@ -14,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        txvadmin = findViewById(R.id.admin)
+        txvadmin = findViewById(R.id.amdtxv)
         txvadmin.setOnClickListener {
             val intent = Intent(this@HomeActivity.applicationContext, AdminPage::class.java)
             startActivity(intent)
