@@ -27,17 +27,17 @@
         <activity
             android:name=".RegistrationActivity"
             android:exported="false"
-            android:label="@string/title_activity_registration"
+            android:label="Registration"
             android:theme="@style/Theme.ImageUploader" />
         <activity
             android:name=".ProjectList"
             android:exported="false"
-            android:label="@string/title_activity_login"
+            android:label="All Projects"
             android:theme="@style/Theme.ImageUploader" />
         <activity
             android:name=".HomeActivity"
             android:exported="false"
-            android:label="@string/title_activity_admin_page"
+            android:label="Home"
             android:theme="@style/Theme.ImageUploader" />
         <activity
             android:name=".LoginActivity"
