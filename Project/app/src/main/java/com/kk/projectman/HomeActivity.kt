@@ -8,6 +8,7 @@ import android.widget.TextView
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var txvadmin: TextView
+    private lateinit var textview: TextView
     private lateinit var stakeholders: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,11 @@ class HomeActivity : AppCompatActivity() {
         stakeholders =  findViewById(R.id.stkholders)
         stakeholders.setOnClickListener {
             val intent = Intent(this@HomeActivity.applicationContext, Tendepreneurs::class.java)
+            startActivity(intent)
+        }
+        textview = findViewById(R.id.prtext)
+        textview.setOnClickListener {
+            val intent = Intent(this@HomeActivity.applicationContext, ProjectList::class.java)
             startActivity(intent)
         }
 
