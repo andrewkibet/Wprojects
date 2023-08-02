@@ -28,7 +28,7 @@ class Tendepreneurs : AppCompatActivity() {
         setContentView(R.layout.activity_tendepreneurs)
 
         fab = findViewById(R.id.fab)
-        fab.setOnClickListener(uploadImage())
+        //fab.setOnClickListener(uploadImage())
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -37,6 +37,8 @@ class Tendepreneurs : AppCompatActivity() {
     }
 
     private fun registerClickEvents() {
+        fab.setOnClickListener(uploadImage())
+
         binding.uploadBtn.setOnClickListener {
             uploadImage()
         }
@@ -66,7 +68,7 @@ class Tendepreneurs : AppCompatActivity() {
 
 
     private fun uploadImage(): View.OnClickListener? {
-        binding.progressBar.visibility = View.VISIBLE
+//        binding.progressBar.visibility = View.VISIBLE
         storageRef = storageRef.child(System.currentTimeMillis().toString())
         imageUri?.let {
             storageRef.putFile(it).addOnCompleteListener { task ->
