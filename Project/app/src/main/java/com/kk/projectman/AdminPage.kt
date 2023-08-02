@@ -42,6 +42,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.storage.FirebaseStorage
@@ -90,7 +92,7 @@ fun AdminPageContent() {
 
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // BackgroundImage()
+         BackgroundImage()
         Column(modifier = Modifier.fillMaxSize()) {
             TopAppBar(
                 title = { Text(text = "Admin Page") },
@@ -216,6 +218,20 @@ fun AdminPageContent() {
         }
 
     }}
+
+
+}
+@Composable
+fun BackgroundImage(){
+    // Load the background image from the drawable resources
+    val backgroundImage = painterResource(id = R.drawable.bg12)
+
+    // Set the background image using the Image composable
+    Image(
+        painter = backgroundImage,
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.FillBounds)
 
 
 }
