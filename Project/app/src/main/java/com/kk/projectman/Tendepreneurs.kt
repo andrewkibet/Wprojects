@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+//import androidx.compose.ui.tooling.data.EmptyGroup.name
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -75,5 +76,28 @@ class Tendepreneurs : AppCompatActivity() {
         // For example, you can use firebaseFirestore.collection("tendepreneurs").document().set(...)
         // to store the imageUrl and other data in Firestore.
         // Implement the logic according to your use case.
+
+        val firestore = FirebaseFirestore.getInstance()
+
+        // Create a data object with the fields you want to save to Firestore
+        val data = hashMapOf(
+            "imageUrl" to imageUrl,
+            //"name" to name,
+            //"email" to email
+            // Add other fields as needed
+        )
+
+        // Save the data to Firestore collection "tendepreneurs"
+        firestore.collection("tendepreneurs")
+            .add(data)
+            .addOnSuccessListener {
+                // Data saved successfully
+                Toast.makeText(this, "Data saved to Firestore", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { exception ->
+                // Error occurred while saving data
+                Toast.makeText(this, "Error saving data to Firestore", Toast.LENGTH_SHORT).show()
+            }
+
     }
 }
