@@ -27,7 +27,7 @@
             android:label="@string/title_activity_registration"
             android:theme="@style/Theme.ImageUploader" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".ProjectList"
             android:exported="false"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.ImageUploader" />
@@ -37,7 +37,7 @@
             android:label="@string/title_activity_admin_page"
             android:theme="@style/Theme.ImageUploader" />
         <activity
-            android:name=".ProjectList"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
