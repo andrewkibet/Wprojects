@@ -17,6 +17,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
@@ -24,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
 //import com.kk.projectman.ui.theme.ProjectTheme
-import com.kk.projectman.ui.RegistrationActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -38,6 +38,9 @@ class LoginActivity : ComponentActivity() {
         auth = FirebaseAuth.getInstance()
 
         setContent {
+
+            val gradientColors = listOf(Color(0xFF64B5F6), Color(0xFFE57373))
+            val gradientBrush = Brush.verticalGradient(gradientColors)
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
