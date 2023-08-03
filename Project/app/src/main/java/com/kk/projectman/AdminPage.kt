@@ -172,7 +172,7 @@ fun AdminPageContent() {
             TextField(
                 value = location,
                 onValueChange = { location = it },
-                label = { Text("Budget") },
+                label = { Text("Location") },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -181,7 +181,7 @@ fun AdminPageContent() {
             TextField(
                 value = Sublocation,
                 onValueChange = { Sublocation = it },
-                label = { Text("Budget") },
+                label = { Text("Sublocation") },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -190,7 +190,7 @@ fun AdminPageContent() {
             TextField(
                 value = Village,
                 onValueChange = { Village = it },
-                label = { Text("Budget") },
+                label = { Text("Village") },
                 modifier = Modifier.fillMaxWidth()
             )
 
