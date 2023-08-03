@@ -46,7 +46,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="LoginActivity">
+            android:label="Ward Projects">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
