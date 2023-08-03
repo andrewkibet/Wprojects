@@ -77,8 +77,8 @@ fun AdminPageContent() {
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
-    var Sublocation by remember { mutableStateOf("") }
-    var Village by remember { mutableStateOf("") }
+    var Startdate by remember { mutableStateOf("") }
+    var Enddate by remember { mutableStateOf("") }
 
     val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
 
@@ -179,18 +179,18 @@ fun AdminPageContent() {
             Spacer(modifier = Modifier.height(16.dp))
 
             TextField(
-                value = Sublocation,
-                onValueChange = { Sublocation = it },
-                label = { Text("Sublocation") },
+                value = Startdate,
+                onValueChange = { Enddate = it },
+                label = { Text("Start Date") },
                 modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             TextField(
-                value = Village,
-                onValueChange = { Village = it },
-                label = { Text("Village") },
+                value = Enddate,
+                onValueChange = { Enddate = it },
+                label = { Text("End Date") },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -237,8 +237,8 @@ fun AdminPageContent() {
                         tenderEmail,
                         budget,
                         location,
-                        Sublocation,
-                        Village,
+                        Startdate,
+                        Enddate,
                         imageUri
 
                     )
