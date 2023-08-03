@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -63,7 +65,7 @@ class LoginActivity : ComponentActivity() {
 
         Column(modifier = Modifier.fillMaxSize()) {
             TopAppBar(
-                title = { Text(text = "Ward Projects") },
+                title = { Text(text = "Login Screen") },
                 modifier = Modifier.fillMaxWidth()
             )
         Column(
@@ -143,6 +145,16 @@ class LoginActivity : ComponentActivity() {
             }
     }
 }
+
+    @Composable
+    fun BackgroundImage() {
+        Image(
+            painter = painterResource(id = R.drawable.walpaper),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            alignment = Alignment.Center
+        )
+    }
 
 @Preview(showBackground = true)
 @Composable
