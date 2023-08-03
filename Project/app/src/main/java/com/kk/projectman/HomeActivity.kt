@@ -17,6 +17,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         news =  findViewById(R.id.newstv)
+        news.setOnClickListener { val intent = Intent (this,News::class.java)
+        startActivity(intent)}
 
         txvadmin = findViewById(R.id.amdtxv)
         txvadmin.setOnClickListener {
