@@ -39,10 +39,7 @@ class LoginActivity : ComponentActivity() {
         auth = FirebaseAuth.getInstance()
 
         setContent {
-
-            val gradientColors = listOf(Color(0xFF64B5F6), Color(0xFFE57373))
-            val gradientBrush = Brush.verticalGradient(gradientColors)
-
+            
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
