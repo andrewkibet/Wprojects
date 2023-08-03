@@ -95,7 +95,7 @@ fun AdminPageContent() {
 
 
     Box(modifier = Modifier.fillMaxSize()) {
-         BackgroundImage()
+         //regBackgroundImage()
         Column(modifier = Modifier.fillMaxSize()) {
             TopAppBar(
                 title = { Text(text = "Admin Page") },
