@@ -16,5 +16,11 @@ class News : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
+
+
+        imageView = findViewById(R.id.imgv3)
+
+        // Start periodic updates every 5 seconds (5000 milliseconds)
+        startPeriodicUpdates()
     }
 }
