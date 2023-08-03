@@ -29,14 +29,23 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.kk.projectman.ui.ui.theme.ProjectManTheme
 
 class ProjectList : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    ProjectListContent()
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        TopAppBar(
+                            title = { Text(text = "All Projects") },
+                            modifier = Modifier.fillMaxWidth()
 
-            }
+                        )
+                        ProjectListContent()
+
+                    }}
+
+
         }
     }
 }
@@ -76,11 +85,7 @@ fun ProjectFields(project: Project) {
     var tenderEmail by remember { mutableStateOf(project.tenderEmail) }
     var budget by remember { mutableStateOf(project.budget) }
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(
-            title = { Text(text = "All Projects") },
-            modifier = Modifier.fillMaxWidth()
-        )
+
     Column {
         TextField(
             value = projectType.orEmpty(),
@@ -124,7 +129,7 @@ fun ProjectFields(project: Project) {
             readOnly = true
         )
     }}
-}
+
 
 
 @Composable
