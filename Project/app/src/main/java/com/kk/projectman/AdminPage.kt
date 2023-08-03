@@ -76,6 +76,9 @@ fun AdminPageContent() {
     var tenderPhoneNumber by remember { mutableStateOf("") }
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
+    var location by remember { mutableStateOf("") }
+    var Sublocation by remember { mutableStateOf("") }
+    var Village by remember { mutableStateOf("") }
 
     val projectTypes = listOf("Health", "Road", "Agriculture", "Schools")
 
@@ -164,6 +167,32 @@ fun AdminPageContent() {
                 label = { Text("Budget") },
                 modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = location,
+                onValueChange = { location = it },
+                label = { Text("Budget") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = Sublocation,
+                onValueChange = { Sublocation = it },
+                label = { Text("Budget") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = Village,
+                onValueChange = { Village = it },
+                label = { Text("Budget") },
+                modifier = Modifier.fillMaxWidth()
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -207,6 +236,9 @@ fun AdminPageContent() {
                         tenderPhoneNumber,
                         tenderEmail,
                         budget,
+                        location,
+                        Sublocation,
+                        Village,
                         imageUri
 
                     )
@@ -247,6 +279,9 @@ private fun saveDetailsToFirestore(
     tenderPhoneNumber: String,
     tenderEmail: String,
     budget: String,
+    location: String,
+    Sublocation:String,
+    Village: String,
     imageUri: Uri? // Add imageUri as a parameter
 ) {
     val firestore = FirebaseFirestore.getInstance()
@@ -282,6 +317,9 @@ private fun saveDetailsToFirestore(
                     "tenderPhoneNumber" to tenderPhoneNumber,
                     "tenderEmail" to tenderEmail,
                     "budget" to budget,
+                    "location" to location,
+                    "Sublocation" to Sublocation,
+                    "Village" to Village,
                     "Image" to downloadUri.toString()
                 )
 
