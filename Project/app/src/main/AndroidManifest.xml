@@ -14,6 +14,12 @@
         android:theme="@style/Theme.ImageUploader"
         tools:targetApi="31">
         <activity
+            android:name=".News"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Tendepreneurs"
             android:exported="false" />
         <activity
@@ -41,8 +47,8 @@
             android:theme="@style/Theme.ImageUploader" />
         <activity
             android:name=".LoginActivity"
-            android:label="LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
