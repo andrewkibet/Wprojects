@@ -9,11 +9,14 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var txvadmin: TextView
     private lateinit var textview: TextView
+    private lateinit var news: TextView
     private lateinit var stakeholders: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        news =  findViewById(R.id.newstv)
 
         txvadmin = findViewById(R.id.amdtxv)
         txvadmin.setOnClickListener {
