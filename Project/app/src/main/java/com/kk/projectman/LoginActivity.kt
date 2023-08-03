@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.ModifierLocalReadScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
@@ -63,6 +64,10 @@ class LoginActivity : ComponentActivity() {
         var isLoading by remember { mutableStateOf(false) } // Added a state to track loading state
 
 
+       Box(modifier = Modifier.fillMaxSize()) {
+           BackgroundImage()
+           
+       }
         Column(modifier = Modifier.fillMaxSize()) {
             TopAppBar(
                 title = { Text(text = "Login Screen") },
