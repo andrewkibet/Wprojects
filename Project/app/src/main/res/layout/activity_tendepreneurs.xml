@@ -20,7 +20,7 @@
         android:text="UPDATE."
         android:textStyle="bold"
         android:textFontWeight="@integer/material_motion_duration_long_2"
-        android:textColor="@android:color/black"
+        android:textColor="@color/ymn"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         android:id="@+id/chatTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="396dp"
         android:padding="16dp"
         android:text="Chat..."
         android:textColor="@android:color/black"
@@ -46,13 +46,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvtitle" />
 
+    <!-- Floating Action Button to add content -->
+
     <ImageView
         android:id="@+id/img3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvtitle"
         tools:srcCompat="@tools:sample/avatars" />
@@ -61,23 +63,38 @@
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="388dp"
         android:text="Push"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img3" />
 
-    <!-- Floating Action Button to add content -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="484dp"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn"
+        app:layout_constraintHorizontal_bias="0.864"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="152dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="12dp"
+        android:text="Add Image"
+        android:textColor="@color/teal_700"
+        android:textSize="33sp"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
