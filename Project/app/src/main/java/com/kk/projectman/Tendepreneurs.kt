@@ -21,9 +21,13 @@ import com.kk.projectman.R
 
 class Tendepreneurs : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton
+
+    private lateinit var tenderPhoneNumber: String
+
     private lateinit var button: Button
     private lateinit var imageview: ImageView
     private  lateinit var chat: EditText
+    private lateinit var phone: EditText
 
     private lateinit var storageRef: StorageReference
     private lateinit var firebaseFirestore: FirebaseFirestore
@@ -38,10 +42,13 @@ class Tendepreneurs : AppCompatActivity() {
         button = findViewById(R.id.btn)
 
         chat = findViewById(R.id.chating)
+        phone = findViewById(R.id.pnnumber)
 
         // Initialize Firebase Firestore and Firebase Storage
         firebaseFirestore = FirebaseFirestore.getInstance()
         storageRef = FirebaseStorage.getInstance().reference
+
+        fetchAdminPhoneNumber()
 
         // Set a click listener to the FAB
         fab.setOnClickListener {
@@ -56,6 +63,22 @@ class Tendepreneurs : AppCompatActivity() {
                 Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun fetchAdminPhoneNumber() {
+        // Query the admin details based on their phone number
+        val adminQuery = firebaseFirestore.collection("adminProjects")
+            .whereEqualTo("tenderPhoneNumber", tenderPhoneNumber) // Replace with the actual field name
+
+        adminQuery.get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    tenderPhoneNumber = documents.first().getString("tenderPhoneNumber") ?: ""
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle error
+            }
     }
 
 
@@ -116,11 +139,13 @@ class Tendepreneurs : AppCompatActivity() {
 
         val firestore = FirebaseFirestore.getInstance()
         val chatText = chat.text.toString()
+        val phonenumber=  phone.text.toString()
 
         // Create a data object with the fields you want to save to Firestore
         val data = hashMapOf(
             "imageUrl" to imageUrl,
-            "chatText" to chatText
+            "chatText" to chatText,
+            "phonumber" to phonenumber
             //"name" to name,
             //"email" to email
             // Add other fields as needed
