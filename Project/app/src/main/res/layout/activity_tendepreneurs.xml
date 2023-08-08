@@ -36,12 +36,15 @@
     <!-- EditText for chat -->
     <EditText
         android:id="@+id/chating"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/img3"
         android:layout_marginTop="36dp"
         android:hint="Enter your chat here"
-        android:inputType="text"
+        android:textColorHint="@color/teal_700"
+        android:textColor="@color/teal_700"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
         android:textStyle="bold"
         />
 
