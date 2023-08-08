@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -14,12 +15,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+
+
 import com.kk.projectman.R
 
 class Tendepreneurs : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton
     private lateinit var button: Button
     private lateinit var imageview: ImageView
+    private  lateinit var chat: EditText
 
     private lateinit var storageRef: StorageReference
     private lateinit var firebaseFirestore: FirebaseFirestore
@@ -32,6 +36,8 @@ class Tendepreneurs : AppCompatActivity() {
         fab = findViewById(R.id.fab)
         imageview = findViewById(R.id.img3)
         button = findViewById(R.id.btn)
+
+        chat = findViewById(R.id.chating)
 
         // Initialize Firebase Firestore and Firebase Storage
         firebaseFirestore = FirebaseFirestore.getInstance()
@@ -109,10 +115,12 @@ class Tendepreneurs : AppCompatActivity() {
         // Implement the logic according to your use case.
 
         val firestore = FirebaseFirestore.getInstance()
+        val chatText = chat.text.toString()
 
         // Create a data object with the fields you want to save to Firestore
         val data = hashMapOf(
             "imageUrl" to imageUrl,
+            "chatText" to chatText
             //"name" to name,
             //"email" to email
             // Add other fields as needed
