@@ -2,7 +2,9 @@ package com.kk.projectman
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -130,6 +132,14 @@ class LoginActivity : ComponentActivity() {
     }}
 
     private fun loginUser(context: Context, email: String, password: String) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+
+        if (activeNetworkInfo == null || !activeNetworkInfo.isConnected) {
+            // Show a Toast indicating no internet connection
+            Toast.makeText(context, "No internet connection", Toast.LENGTH_SHORT).show()
+            return
+        }
 
       // Set loading state to true
 
