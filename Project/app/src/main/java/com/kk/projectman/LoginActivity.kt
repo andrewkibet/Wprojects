@@ -105,7 +105,13 @@ class LoginActivity : ComponentActivity() {
             Button(
                 onClick = {
                     // Handle login button click
-                    loginUser(context, email, password)
+                    if (!isLoading) { // Check if login is not already in progress
+                        isLoading = true // Set loading state to true
+                        loginUser(context, email, password);
+                        {
+                            isLoading = false
+                        }
+                    }
                 },
                 modifier = Modifier.align(Alignment.End)
             ) {
