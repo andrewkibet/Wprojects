@@ -73,7 +73,7 @@ fun AdminPageContent() {
     var selectedProjectType by remember { mutableStateOf("") }
     var projectName by remember { mutableStateOf("") }
     var tenderName by remember { mutableStateOf("") }
-    var tenderPhoneNumber by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
     var tenderEmail by remember { mutableStateOf("") }
     var budget by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
@@ -106,7 +106,6 @@ fun AdminPageContent() {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
-
 
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -144,8 +143,8 @@ fun AdminPageContent() {
             Spacer(modifier = Modifier.height(16.dp))
 
             TextField(
-                value = tenderPhoneNumber,
-                onValueChange = { tenderPhoneNumber = it },
+                value = phoneNumber,
+                onValueChange = { phoneNumber = it },
                 label = { Text("Tender Phone Number") },
                 modifier = Modifier.fillMaxWidth()
             )
@@ -180,10 +179,11 @@ fun AdminPageContent() {
 
             TextField(
                 value = Startdate,
-                onValueChange = { Enddate = it },
-                label = { Text("Start Date") },
+                onValueChange = { Startdate = it },
+                label = { Text("Start...") },
                 modifier = Modifier.fillMaxWidth()
             )
+
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -233,7 +233,7 @@ fun AdminPageContent() {
                         selectedProjectType,
                         projectName,
                         tenderName,
-                        tenderPhoneNumber,
+                        phoneNumber,
                         tenderEmail,
                         budget,
                         location,
@@ -276,7 +276,7 @@ private fun saveDetailsToFirestore(
     projectType: String,
     projectName: String,
     tenderName: String,
-    tenderPhoneNumber: String,
+    phoneNumber: String,
     tenderEmail: String,
     budget: String,
     location: String,
@@ -288,7 +288,7 @@ private fun saveDetailsToFirestore(
     val storage = FirebaseStorage.getInstance()
 
     // Create a reference to the Firebase Storage location where you want to upload the image
-    val imageRef = storage.reference.child("project_images/${System.currentTimeMillis()}_${imageUri?.lastPathSegment}")
+    val imageRef = storage.reference.child("admin_images/${System.currentTimeMillis()}_${imageUri?.lastPathSegment}")
 
     // Upload the image to Firebase Storage
     imageUri?.let {
@@ -314,7 +314,7 @@ private fun saveDetailsToFirestore(
                     "projectType" to projectType,
                     "projectName" to projectName,
                     "tenderName" to tenderName,
-                    "tenderPhoneNumber" to tenderPhoneNumber,
+                    "phoneNumber" to phoneNumber,
                     "tenderEmail" to tenderEmail,
                     "budget" to budget,
                     "location" to location,
