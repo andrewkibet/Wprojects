@@ -18,7 +18,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".Tendepreneurs"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".AdminPage"
@@ -39,7 +39,7 @@
             android:label="All Projects"
             android:theme="@style/Theme.ImageUploader" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Tendepreneurs"
             android:exported="false"
             android:label="Home"
             android:theme="@style/Theme.ImageUploader" />
