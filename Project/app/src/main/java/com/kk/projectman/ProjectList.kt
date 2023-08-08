@@ -1,13 +1,5 @@
 package com.kk.projectman
 
-import androidx.compose.foundation.Image
-
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-
-import androidx.compose.ui.unit.dp
-
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -92,17 +84,6 @@ fun ProjectFields(project: Project) {
     var tenderPhoneNumber by remember { mutableStateOf(project.tenderPhoneNumber) }
     var tenderEmail by remember { mutableStateOf(project.tenderEmail) }
     var budget by remember { mutableStateOf(project.budget) }
-    val imageUrl = project.imageUrl
-
-    // Display the image using the Image composable
-    Image(
-        painter = painterResource(id = R.drawable.bg12), // Placeholder image
-        contentDescription = null,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp), // Adjust the height as needed
-        contentScale = ContentScale.Crop
-    )
 
 
     Column {
@@ -169,6 +150,7 @@ class ProjectListState {
         private set
     var error by mutableStateOf<String?>(null)
         private set
+
     fun fetchData() {
         val firestore = FirebaseFirestore.getInstance()
         val collectionRef = firestore.collection("adminProjects")
@@ -176,25 +158,7 @@ class ProjectListState {
         collectionRef.get()
             .addOnSuccessListener { querySnapshot ->
                 val projects = querySnapshot.documents.mapNotNull { document ->
-                    val imageUrl = document.getString("imageUrl")
-                    // Fetch other project details
-                    val projectType = document.getString("projectType")
-                    val projectName = document.getString("projectName")
-                    val tenderName = document.getString("tenderName")
-                    val tenderPhoneNumber = document.getString("tenderPhoneNumber")
-                    val tenderEmail = document.getString("tenderEmail")
-                    val budget = document.getString("budget")
-
-                    // Create a Project instance with the fetched details and imageUrl
-                    Project(
-                        projectType,
-                        projectName,
-                        tenderName,
-                        tenderPhoneNumber,
-                        tenderEmail,
-                        budget,
-                        imageUrl
-                    )
+                    document.toObject(Project::class.java)
                 }
 
                 projectList = projects
@@ -205,7 +169,6 @@ class ProjectListState {
                 isLoading = false
             }
     }
-
 }
 
 data class Project(
@@ -214,8 +177,7 @@ data class Project(
     val tenderName: String? = null,
     val tenderPhoneNumber: String? = null,
     val tenderEmail: String? = null,
-    val budget: String? = null,
-    val imageUrl: String? = null
+    val budget: String? = null
 )
 
 @Preview(showBackground = true)
