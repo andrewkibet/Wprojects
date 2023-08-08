@@ -1,5 +1,6 @@
 package com.kk.projectman
 import android.content.Intent
+import android.graphics.Insets.add
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -109,6 +110,7 @@ class Tendepreneurs : AppCompatActivity() {
                 }
         }
     }
+
     private fun saveImageUrlToFirestore(imageUrl: String) {
         val firestore = FirebaseFirestore.getInstance()
         val chatText = chat.text.toString()
@@ -121,29 +123,16 @@ class Tendepreneurs : AppCompatActivity() {
             "phoneNumber" to phoneNumber
         )
 
-        // Query the "tendepreneurs" collection for documents with the same phone number
-        firestore.collection("adminProjects")
-            .whereEqualTo("phoneNumber", phoneNumber)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    // Update the data of matching documents
-                    firestore.collection("adminProjects")
-                        .document(document.id)
-                        .update(data as Map<String, Any>)
-                        .addOnSuccessListener {
-                            // Data updated successfully
-                            Toast.makeText(this, "Data updated in Firestore", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener { exception ->
-                            // Error occurred while updating data
-                            Toast.makeText(this, "Error updating data in Firestore", Toast.LENGTH_SHORT).show()
-                        }
-                }
+        // Add the data to the "tenderp" collection in Firestore
+        firestore.collection("tenderp")
+            .add(data)
+            .addOnSuccessListener {
+                // Data added successfully
+                Toast.makeText(this, "Data added to Firestore", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { exception ->
-                // Error occurred while querying Firestore
-                Toast.makeText(this, "Error querying data in Firestore", Toast.LENGTH_SHORT).show()
+                // Error occurred while adding data
+                Toast.makeText(this, "Error adding data to Firestore", Toast.LENGTH_SHORT).show()
             }
     }
 
