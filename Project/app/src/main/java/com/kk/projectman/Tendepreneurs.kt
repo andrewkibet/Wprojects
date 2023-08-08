@@ -21,9 +21,6 @@ import com.kk.projectman.R
 
 class Tendepreneurs : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton
-
-    private lateinit var tenderPhoneNumber: String
-
     private lateinit var button: Button
     private lateinit var imageview: ImageView
     private  lateinit var chat: EditText
@@ -48,8 +45,6 @@ class Tendepreneurs : AppCompatActivity() {
         firebaseFirestore = FirebaseFirestore.getInstance()
         storageRef = FirebaseStorage.getInstance().reference
 
-        fetchAdminPhoneNumber()
-
         // Set a click listener to the FAB
         fab.setOnClickListener {
             // Launch image picker to select an image
@@ -63,22 +58,6 @@ class Tendepreneurs : AppCompatActivity() {
                 Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun fetchAdminPhoneNumber() {
-        // Query the admin details based on their phone number
-        val adminQuery = firebaseFirestore.collection("adminProjects")
-            .whereEqualTo("tenderPhoneNumber", tenderPhoneNumber) // Replace with the actual field name
-
-        adminQuery.get()
-            .addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    tenderPhoneNumber = documents.first().getString("tenderPhoneNumber") ?: ""
-                }
-            }
-            .addOnFailureListener { exception ->
-                // Handle error
-            }
     }
 
 
@@ -130,38 +109,42 @@ class Tendepreneurs : AppCompatActivity() {
                 }
         }
     }
-
     private fun saveImageUrlToFirestore(imageUrl: String) {
-        // Here you can save the imageUrl to Firestore along with other data
-        // For example, you can use firebaseFirestore.collection("tendepreneurs").document().set(...)
-        // to store the imageUrl and other data in Firestore.
-        // Implement the logic according to your use case.
-
         val firestore = FirebaseFirestore.getInstance()
         val chatText = chat.text.toString()
-        val phonenumber=  phone.text.toString()
+        val phoneNumber = phone.text.toString()
 
         // Create a data object with the fields you want to save to Firestore
         val data = hashMapOf(
             "imageUrl" to imageUrl,
             "chatText" to chatText,
-            "phonumber" to phonenumber
-            //"name" to name,
-            //"email" to email
-            // Add other fields as needed
+            "phoneNumber" to phoneNumber
         )
 
-        // Save the data to Firestore collection "tendepreneurs"
-        firestore.collection("tendepreneurs")
-            .add(data)
-            .addOnSuccessListener {
-                // Data saved successfully
-                Toast.makeText(this, "Data saved to Firestore", Toast.LENGTH_SHORT).show()
+        // Query the "tendepreneurs" collection for documents with the same phone number
+        firestore.collection("adminProjects")
+            .whereEqualTo("phoneNumber", phoneNumber)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    // Update the data of matching documents
+                    firestore.collection("adminProjects")
+                        .document(document.id)
+                        .update(data as Map<String, Any>)
+                        .addOnSuccessListener {
+                            // Data updated successfully
+                            Toast.makeText(this, "Data updated in Firestore", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            // Error occurred while updating data
+                            Toast.makeText(this, "Error updating data in Firestore", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             .addOnFailureListener { exception ->
-                // Error occurred while saving data
-                Toast.makeText(this, "Error saving data to Firestore", Toast.LENGTH_SHORT).show()
+                // Error occurred while querying Firestore
+                Toast.makeText(this, "Error querying data in Firestore", Toast.LENGTH_SHORT).show()
             }
-
     }
+
 }
