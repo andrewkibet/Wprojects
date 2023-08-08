@@ -13,10 +13,13 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var textview: TextView
     private lateinit var news: TextView
     private lateinit var stakeholders: TextView
+    private  lateinit var chat:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
 
         button = findViewById(R.id.logout)
         button.setOnClickListener { val intent = Intent (this,LoginActivity::class.java)
