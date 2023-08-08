@@ -18,7 +18,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Tendepreneurs"
             android:exported="false" />
         <activity
             android:name=".AdminPage"
@@ -44,7 +44,7 @@
             android:label="Home"
             android:theme="@style/Theme.ImageUploader" />
         <activity
-            android:name=".Tendepreneurs"
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="Ward Projects">
             <intent-filter>
