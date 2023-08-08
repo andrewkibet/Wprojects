@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,72 +19,91 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="36sp"
-        android:layout_centerHorizontal="true"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <!-- ImageView to display an image -->
+
+    <!-- EditText for name -->
+
     <ImageView
         android:id="@+id/img3"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/txvtitle"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvtitle"
+        tools:srcCompat="@drawable/lkk" />
+
+    <EditText
+        android:id="@+id/pnnumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/lkk"
-        />
+        android:layout_marginEnd="16dp"
+        android:hint="Phone Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img3" />
 
     <!-- EditText for chat -->
     <EditText
         android:id="@+id/chating"
-        android:layout_width="315dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img3"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:hint="Enter your chat here"
-        android:textColorHint="@color/teal_700"
-        android:textColor="@color/teal_700"
         android:inputType="textMultiLine"
         android:maxLines="3"
-        android:textStyle="bold"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pnnumber" />
 
     <!-- "Push" Button -->
     <Button
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chating"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/teal_700"
         android:text="Update"
         android:textColor="@color/white"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chating" />
 
     <!-- Floating Action Button to add content -->
+
+    <!-- "Add Image" TextView -->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
         android:src="@drawable/add"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toEndOf="@+id/img3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.241" />
 
-    <!-- "Add Image" TextView -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fab"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="Add Image"
         android:textColor="@color/teal_700"
         android:textSize="20sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fab" />
 
-
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
