@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +8,6 @@
     android:background="@color/cardview_light_background"
     android:scrollbars="vertical"
     tools:context=".Tendepreneurs">
-
 
     <!-- Title TextView -->
     <TextView
@@ -21,67 +19,69 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="36sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Chat RecyclerView (for a more dynamic chat interface) -->
+        android:layout_centerHorizontal="true"
+        />
 
     <!-- ImageView to display an image -->
     <ImageView
         android:id="@+id/img3"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_below="@+id/txvtitle"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/txvtitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:srcCompat="@drawable/sample_image" />
+        app:srcCompat="@drawable/lkk"
+        />
 
-    <!-- Push Button -->
+    <!-- EditText for chat -->
+    <EditText
+        android:id="@+id/chating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img3"
+        android:layout_marginTop="36dp"
+        android:hint="Enter your chat here"
+        android:inputType="text"
+        android:textStyle="bold"
+        />
+
+    <!-- "Push" Button -->
     <Button
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/chating"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="Push"
-        android:textColor="@color/white"
         android:backgroundTint="@color/teal_700"
-        app:layout_constraintTop_toBottomOf="@+id/img3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Update"
+        android:textColor="@color/white"
+        />
 
     <!-- Floating Action Button to add content -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
         android:src="@drawable/add"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        />
 
+    <!-- "Add Image" TextView -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/fab"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
         android:text="Add Image"
         android:textColor="@color/teal_700"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/fab"
-        app:layout_constraintStart_toStartOf="@+id/fab"
-        app:layout_constraintEnd_toEndOf="@+id/fab" />
+        />
 
-    <EditText
-        android:id="@+id/chating"
-        android:layout_width="233dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="52dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Chat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</RelativeLayout>
