@@ -154,6 +154,8 @@ class ProjectListState {
     fun fetchData() {
         val firestore = FirebaseFirestore.getInstance()
         val collectionRef = firestore.collection("adminProjects")
+        val tenderCollectionRef = firestore.collection("tenderp")
+        val tenderProjectsTask = tenderCollectionRef.get()
 
         collectionRef.get()
             .addOnSuccessListener { querySnapshot ->
