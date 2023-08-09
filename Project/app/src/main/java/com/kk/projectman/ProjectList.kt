@@ -42,6 +42,7 @@ class ProjectList : ComponentActivity() {
 
                         )
                         ProjectListContent()
+                        TendepreneurListContent()
 
                     }}
 
