@@ -84,7 +84,6 @@ fun ProjectFields(project: Project) {
     var tenderPhoneNumber by remember { mutableStateOf(project.tenderPhoneNumber) }
     var tenderEmail by remember { mutableStateOf(project.tenderEmail) }
     var budget by remember { mutableStateOf(project.budget) }
-    var updateText by remember{ mutableStateOf(project.updateText) }
 
 
     Column {
@@ -125,14 +124,6 @@ fun ProjectFields(project: Project) {
         TextField(
             value = budget.orEmpty(),
             onValueChange = { budget = it },
-            label = { Text("Budget") },
-            modifier = Modifier.fillMaxWidth(),
-            readOnly = true
-        )
-
-        TextField(
-            value = updateText.orEmpty(),
-            onValueChange = { updateText = it },
             label = { Text("Budget") },
             modifier = Modifier.fillMaxWidth(),
             readOnly = true
@@ -188,8 +179,7 @@ data class Project(
     val tenderName: String? = null,
     val tenderPhoneNumber: String? = null,
     val tenderEmail: String? = null,
-    val budget: String? = null,
-val updateText: String? =null
+    val budget: String? = null
 )
 
 @Preview(showBackground = true)
