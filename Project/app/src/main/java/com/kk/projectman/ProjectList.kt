@@ -75,6 +75,40 @@ fun ProjectListContent() {
     }
 }
 
+@Composable
+fun TendepreneurListContent() {
+    val tendepreneurListState = rememberTendepreneurListState()
+
+
+    when {
+        tendepreneurListState.isLoading -> {
+            // Show loading indicator
+            Text(text = "Loading...")
+        }
+        tendepreneurListState.error != null -> {
+            // Show error message
+            Text(text = "Error: ${tendepreneurListState.error}")
+        }
+        else -> {
+            // Display the fetched data
+            LazyColumn(Modifier.fillMaxSize()){
+                items(tendepreneurListState.projectList){project ->
+                    ProjectFields(project)
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+            }
+        }
+    }
+
+    // Similar structure to ProjectListContent, adapting for Tendepreneur data
+    // ...
+}
+
+
+
+
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProjectFields(project: Project) {
@@ -132,6 +166,21 @@ fun ProjectFields(project: Project) {
 
 
 
+
+
+@Composable
+fun rememberTendepreneurListState(): ProjectListState {
+    val tendepreneurListState = remember { ProjectListState() }
+
+    LaunchedEffect(Unit) {
+        tendepreneurListState.fetchTendepreneurData()
+    }
+
+    return tendepreneurListState
+}
+
+
+
 @Composable
 fun rememberProjectListState(): ProjectListState {
     val projectListState = remember { ProjectListState() }
@@ -171,6 +220,27 @@ class ProjectListState {
                 isLoading = false
             }
     }
+
+
+    fun fetchTendepreneurData() {
+        val firestore = FirebaseFirestore.getInstance()
+        val collectionRef = firestore.collection("tenderpProjects") // Use the new collection name
+
+        collectionRef.get()
+            .addOnSuccessListener { querySnapshot ->
+                val projects = querySnapshot.documents.mapNotNull { document ->
+                    document.toObject(Project::class.java)
+                }
+
+                projectList = projects
+                isLoading = false
+            }
+            .addOnFailureListener { exception ->
+                error = "Error fetching data: ${exception.message}"
+                isLoading = false
+            }
+    }
+
 }
 
 data class Project(
