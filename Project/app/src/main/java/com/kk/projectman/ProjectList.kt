@@ -15,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,24 +28,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.kk.projectman.ui.ui.theme.ProjectManTheme
 
 class ProjectList : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        TopAppBar(
-                            title = { Text(text = "All Projects") },
-                            modifier = Modifier.fillMaxWidth()
+            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                ProjectListContent()
 
-                        )
-                        ProjectListContent()
-                        TendepreneurListContent()
-
-                    }}
-
-
+            }
         }
     }
 }
@@ -76,40 +65,6 @@ fun ProjectListContent() {
     }
 }
 
-@Composable
-fun TendepreneurListContent() {
-    val tendepreneurListState = rememberTendepreneurListState()
-
-
-    when {
-        tendepreneurListState.isLoading -> {
-            // Show loading indicator
-            Text(text = "Loading...")
-        }
-        tendepreneurListState.error != null -> {
-            // Show error message
-            Text(text = "Error: ${tendepreneurListState.error}")
-        }
-        else -> {
-            // Display the fetched data
-            LazyColumn(Modifier.fillMaxSize()){
-                items(tendepreneurListState.projectList){project ->
-                    ProjectFields(project)
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
-            }
-        }
-    }
-
-    // Similar structure to ProjectListContent, adapting for Tendepreneur data
-    // ...
-}
-
-
-
-
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProjectFields(project: Project) {
@@ -120,28 +75,24 @@ fun ProjectFields(project: Project) {
     var tenderEmail by remember { mutableStateOf(project.tenderEmail) }
     var budget by remember { mutableStateOf(project.budget) }
 
-
     Column {
         TextField(
             value = projectType.orEmpty(),
             onValueChange = { projectType = it },
             label = { Text("Project Type") },
-            modifier = Modifier.fillMaxWidth(),
-            readOnly = true
+            modifier = Modifier.fillMaxWidth()
         )
         TextField(
             value = projectName.orEmpty(),
             onValueChange = { projectName = it },
             label = { Text("Project Name") },
-            modifier = Modifier.fillMaxWidth(),
-            readOnly = true
+            modifier = Modifier.fillMaxWidth()
         )
         TextField(
             value = tenderName.orEmpty(),
             onValueChange = { tenderName = it },
             label = { Text("Tender Name") },
-            modifier = Modifier.fillMaxWidth(),
-            readOnly = true
+            modifier = Modifier.fillMaxWidth()
         )
         TextField(
             value = tenderPhoneNumber.orEmpty(),
@@ -153,33 +104,16 @@ fun ProjectFields(project: Project) {
             value = tenderEmail.orEmpty(),
             onValueChange = { tenderEmail = it },
             label = { Text("Tender Email") },
-            modifier = Modifier.fillMaxWidth(),
-            readOnly = true
+            modifier = Modifier.fillMaxWidth()
         )
         TextField(
             value = budget.orEmpty(),
             onValueChange = { budget = it },
             label = { Text("Budget") },
-            modifier = Modifier.fillMaxWidth(),
-            readOnly = true
+            modifier = Modifier.fillMaxWidth()
         )
-    }}
-
-
-
-
-
-@Composable
-fun rememberTendepreneurListState(): ProjectListState {
-    val tendepreneurListState = remember { ProjectListState() }
-
-    LaunchedEffect(Unit) {
-        tendepreneurListState.fetchTendepreneurData()
     }
-
-    return tendepreneurListState
 }
-
 
 
 @Composable
@@ -204,8 +138,6 @@ class ProjectListState {
     fun fetchData() {
         val firestore = FirebaseFirestore.getInstance()
         val collectionRef = firestore.collection("adminProjects")
-        val tenderCollectionRef = firestore.collection("tenderp")
-        val tenderProjectsTask = tenderCollectionRef.get()
 
         collectionRef.get()
             .addOnSuccessListener { querySnapshot ->
@@ -221,27 +153,6 @@ class ProjectListState {
                 isLoading = false
             }
     }
-
-
-    fun fetchTendepreneurData() {
-        val firestore = FirebaseFirestore.getInstance()
-        val collectionRef = firestore.collection("tenderpProjects") // Use the new collection name
-
-        collectionRef.get()
-            .addOnSuccessListener { querySnapshot ->
-                val projects = querySnapshot.documents.mapNotNull { document ->
-                    document.toObject(Project::class.java)
-                }
-
-                projectList = projects
-                isLoading = false
-            }
-            .addOnFailureListener { exception ->
-                error = "Error fetching data: ${exception.message}"
-                isLoading = false
-            }
-    }
-
 }
 
 data class Project(
@@ -257,6 +168,6 @@ data class Project(
 @Composable
 fun ProjectListContentPreview() {
 
-        ProjectListContent()
+    ProjectListContent()
 
 }
