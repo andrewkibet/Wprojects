@@ -1,5 +1,7 @@
 package com.kk.projectman
 
+
+/*
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -47,3 +49,5 @@ class ImagesActivity : AppCompatActivity() {
     }
 
 }
+
+ */
